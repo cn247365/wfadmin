@@ -1,0 +1,355 @@
+﻿﻿@model WebApp.Models.WfModel.YADSCCostCenter
+<!-- 弹出编辑窗体表单 -->
+ <div id="yadsccostcenterdetailwindow" class="easyui-window" 
+      title="编辑YADSCCostCenter" 
+      data-options="modal:true,
+                    closed:true,
+                    minimizable:false,
+                    collapsible:false,
+                    maximized:false,
+                    iconCls:'fal fa-window',
+                    onBeforeClose:function(){
+                      var that = $(this);
+                      if(yadsccostcenterhasmodified()){
+                        $.messager.confirm('确认','你确定要放弃保存修改的记录?',function(r){
+                        if (r){
+                          var opts = that.panel('options');
+                          var onBeforeClose = opts.onBeforeClose;
+                          opts.onBeforeClose = function(){};
+                          that.panel('close');
+                          opts.onBeforeClose = onBeforeClose;
+                          hook = false;
+                        }
+                        });
+                        return false;
+                      }
+                    },
+                    onOpen:function(){
+                       $(this).window('vcenter');
+                       $(this).window('hcenter');
+                    },
+                    onRestore:function(){
+                    },
+                    onMaximize:function(){
+                    }
+                    " style="width:800px;height:450px;display:none">
+  <!-- toolbar -->
+  <div class="panel-content py-2 rounded-bottom border-faded border-left-0 border-right-0  text-muted bg-subtlelight-fade sticky-top">
+  <div class="d-flex justify-content-end pr-4">
+        <div class="btn-group btn-group-sm mr-1">
+          <button name="saveitembutton"   class="btn btn-default">
+            <i class="fal fa-save"></i> @Html.L("Save")
+          </button>
+        </div>
+        <div class="btn-group btn-group-sm mr-1" id="deleteitem-btn-group">
+          <button  name="deleteitembutton" class="btn btn-danger">
+            <i class="fal fa-trash-alt"></i> @Html.L("Delete")
+          </button>
+        </div>
+    </div>
+  </div>
+ <!-- panel container form  -->
+ <div class="panel-container show">
+   <div class="container">
+    <div class="panel-content">
+           <form id="yadsccostcenter_form" 
+              class="easyui-form form-horizontal padding-10" 
+              method="post" 
+              data-options="novalidate:true,
+                            onChange: function(target){
+                              hook = true;
+                              $('button[name*=\'saveitembutton\']').prop('disabled', false);
+                             },
+                             onLoadSuccess:function(data){
+                               hook = false;
+                               $('button[name*=\'saveitembutton\']').prop('disabled', true);
+                             }">
+  @Html.AntiForgeryToken()
+   <!--Primary Key-->
+  @Html.HiddenFor(model=>model.ID)
+   <fieldset class="form-group">
+   <div class="row h-100 align-items-center">
+
+   <!--CostCenter-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.CostCenter)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.CostCenter)" 
+				   name="@Html.NameFor(model => model.CostCenter)" 
+				   value="@Html.ValueFor(model => model.CostCenter)"
+				   tabindex="0" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.CostCenter)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+   <!--CostCenterName-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.CostCenterName)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.CostCenterName)" 
+				   name="@Html.NameFor(model => model.CostCenterName)" 
+				   value="@Html.ValueFor(model => model.CostCenterName)"
+				   tabindex="1" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.CostCenterName)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+
+   <!--CCMGlobalID-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.CCMGlobalID)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.CCMGlobalID)" 
+				   name="@Html.NameFor(model => model.CCMGlobalID)" 
+				   value="@Html.ValueFor(model => model.CCMGlobalID)"
+				   tabindex="2" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.CCMGlobalID)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+   <!--CCMShortName-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.CCMShortName)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.CCMShortName)" 
+				   name="@Html.NameFor(model => model.CCMShortName)" 
+				   value="@Html.ValueFor(model => model.CCMShortName)"
+				   tabindex="3" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.CCMShortName)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+
+   <!--CCMDisplayName-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.CCMDisplayName)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.CCMDisplayName)" 
+				   name="@Html.NameFor(model => model.CCMDisplayName)" 
+				   value="@Html.ValueFor(model => model.CCMDisplayName)"
+				   tabindex="4" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.CCMDisplayName)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+   <!--BOMGlobalID-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.BOMGlobalID)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.BOMGlobalID)" 
+				   name="@Html.NameFor(model => model.BOMGlobalID)" 
+				   value="@Html.ValueFor(model => model.BOMGlobalID)"
+				   tabindex="5" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.BOMGlobalID)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+
+   <!--BOMShortName-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.BOMShortName)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.BOMShortName)" 
+				   name="@Html.NameFor(model => model.BOMShortName)" 
+				   value="@Html.ValueFor(model => model.BOMShortName)"
+				   tabindex="6" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.BOMShortName)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+   <!--BOMDisplayName-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.BOMDisplayName)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.BOMDisplayName)" 
+				   name="@Html.NameFor(model => model.BOMDisplayName)" 
+				   value="@Html.ValueFor(model => model.BOMDisplayName)"
+				   tabindex="7" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.BOMDisplayName)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+
+   <!--OverallResopnsible-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.OverallResopnsible)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.OverallResopnsible)" 
+				   name="@Html.NameFor(model => model.OverallResopnsible)" 
+				   value="@Html.ValueFor(model => model.OverallResopnsible)"
+				   tabindex="8" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.OverallResopnsible)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+   <!--BusLineFunHeadDisplayName-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.BusLineFunHeadDisplayName)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.BusLineFunHeadDisplayName)" 
+				   name="@Html.NameFor(model => model.BusLineFunHeadDisplayName)" 
+				   value="@Html.ValueFor(model => model.BusLineFunHeadDisplayName)"
+				   tabindex="9" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.BusLineFunHeadDisplayName)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+
+   <!--BusLineFunHeadGlobalID-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.BusLineFunHeadGlobalID)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.BusLineFunHeadGlobalID)" 
+				   name="@Html.NameFor(model => model.BusLineFunHeadGlobalID)" 
+				   value="@Html.ValueFor(model => model.BusLineFunHeadGlobalID)"
+				   tabindex="10" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.BusLineFunHeadGlobalID)',
+								 required:false, 
+                                 validType: 'length[0,50]'
+                                 " />
+       </div>
+				   
+	    </div> 
+      </fieldset>
+   </form>
+    </div>
+    </div>
+    </div>
+</div>
+
+<!-- 弹出窗体form表单 -->
+<!-- 弹出编辑对话框 -->
+
+<!--begin popup detailview javascript block -->
+<script type="text/javascript">
+ //当初始的 HTML 文档被完全加载和解析完成之后
+ document.addEventListener('DOMContentLoaded', function () {
+     //绑定按钮事件
+    $('button[name="saveitembutton"]').on('click', saveyadsccostcenteritem);
+    $('button[name="deleteitembutton"]').on('click', deleteyadsccostcenteritem);
+  });
+    //判断新增编辑状态
+    var MODELSTATE = 'Added';
+    var yadsccostcenterid = null;
+    function openyadsccostcenterdetailwindow(data,state) {
+         MODELSTATE = state;
+         //判断是否显示功能按钮
+        if (MODELSTATE === 'Added') {
+          $('#deleteitem-btn-group').hide();
+        } else {
+          $('#deleteitem-btn-group').show();
+        }
+        inityadsccostcenterdetailview();
+         yadsccostcenterid = (data.Id || 0);
+         $('#yadsccostcenterdetailwindow').window('open');
+         $('#yadsccostcenter_form').form('reset');
+         $('#yadsccostcenter_form').form('load', data);
+             }
+  //删除当前记录
+  function deleteyadsccostcenteritem() {
+    $.messager.confirm('确认', '你确定要删除该记录?', result => {
+      if (result) {
+        const url = `/YADSCCostCenters/Delete/${yadsccostcenterid}`;
+        $.get(url).done(res => {
+          if (res.success) {
+            toastr.success("删除成功");
+            $('#yadsccostcenterdetailwindow').window('close');
+            reloadData();
+          } else {
+            $.messager.alert('错误', res.err, 'error');
+          }
+        });
+      }
+    });
+  }
+    //async 保存数据
+    async function saveyadsccostcenteritem() { 
+      const $yadsccostcenterform = $('#yadsccostcenter_form');
+      if ($yadsccostcenterform.form('enableValidation').form('validate')) {
+            let yadsccostcenter = $yadsccostcenterform.serializeJSON();
+            let url = '/YADSCCostCenters/Edit';
+            //判断是新增或是修改方法
+            if (MODELSTATE === 'Added') {
+                url = '/YADSCCostCenters/Create';
+            }
+            var token = $('input[name="__RequestVerificationToken"]', $yadsccostcenterform).val();
+            $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        __RequestVerificationToken: token,
+                        yadsccostcenter:yadsccostcenter
+                    },
+                    dataType: 'json',
+                    contentType: 'application/x-www-form-urlencoded; charset=utf-8'
+                })
+                .done(response => {
+                    if (response.success) {
+                        hook = false;
+                        $yadsccostcenterform.form('disableValidation');
+                        $('#yadsccostcenterdetailwindow').window("close");
+                        toastr.success("保存成功"); 
+                        reloadData();
+                    } else {
+                        $.messager.alert("错误",   response.err, "error");
+                    }
+                    })
+                .fail((jqXHR, textStatus, errorThrown) => {
+                       $.messager.alert('异常', `${jqXHR.status}: ${jqXHR.statusText} `, 'error');
+                    });
+        }
+    }
+     //判断是否有没有保存的记录
+     function yadsccostcenterhasmodified() {
+            return hook;
+
+     }
+
+
+function inityadsccostcenterdetailview() {
+//回车光标移动到下个输入控件
+}
+</script>
+

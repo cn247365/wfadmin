@@ -1,0 +1,122 @@
+﻿﻿@model SmartAdmin.Data.Models.WfTable
+  <div class="form-row">
+   @Html.HiddenFor(x=>x.Id)
+         <!--Catalog-->
+        <div class="col-xs-12 col-md-6">
+            <label class="form-label text-danger">@Html.DisplayNameFor(model => model.Table_Catalog)</label>
+			@Html.EditorFor(x => x.Table_Catalog, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.Table_Catalog) } })
+      
+         </div>
+
+        <!--Schema-->
+        <div class="col-xs-12 col-md-6">
+            <label class="form-label text-danger">@Html.DisplayNameFor(model => model.Table_Schema)</label>
+			@Html.EditorFor(x => x.Table_Schema, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.Table_Schema) } })
+      
+         </div>
+
+        <!--Table Name-->
+        <div class="col-xs-12 col-md-6">
+            <label class="form-label text-danger">@Html.DisplayNameFor(model => model.Table_Name)</label>
+			@Html.EditorFor(x => x.Table_Name, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.Table_Name) } })
+      
+         </div>
+
+        <!--Type-->
+        <div class="col-xs-12 col-md-6">
+            <label class="form-label text-danger">@Html.DisplayNameFor(model => model.Table_Type)</label>
+			@Html.EditorFor(x => x.Table_Type, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.Table_Type) } })
+      
+         </div>
+
+        <!--Workflow Name-->
+        <div class="col-xs-12 col-md-6">
+            <label class="form-label ">@Html.DisplayNameFor(model => model.WorkflowName)</label>
+			@Html.EditorFor(x => x.WorkflowName, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.WorkflowName) } })
+      
+         </div>
+
+        <!--Description-->
+        <div class="col-xs-12 col-md-6">
+            <label class="form-label ">@Html.DisplayNameFor(model => model.Description)</label>
+			@Html.EditorFor(x => x.Description, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.Description) } })
+      
+         </div>
+
+		
+      <!--Allowed Add-->
+      <div class="col-xs-12 col-md-6">
+              <label class="form-label text-danger">@Html.DisplayNameFor(model => model.AllowedAdd)</label>
+              <div class="custom-control custom-checkbox">
+                 <input id="@Html.IdFor(model => model.AllowedAdd)"
+                       name="@Html.NameFor(model => model.AllowedAdd)"
+                       value="true" @(Model.AllowedAdd ? "checked=\"checked\"" : "")
+                       class="custom-control-input"
+                       tabindex="6"
+                       type="checkbox" />
+                <label class="custom-control-label" for="@Html.IdFor(model => model.AllowedAdd)">@Html.DisplayNameFor(model => model.AllowedAdd)</label>
+            </div>
+      </div>
+
+		
+      <!--Allowed Edit-->
+      <div class="col-xs-12 col-md-6">
+              <label class="form-label text-danger">@Html.DisplayNameFor(model => model.AllowedEdit)</label>
+              <div class="custom-control custom-checkbox">
+                 <input id="@Html.IdFor(model => model.AllowedEdit)"
+                       name="@Html.NameFor(model => model.AllowedEdit)"
+                       value="true" @(Model.AllowedEdit ? "checked=\"checked\"" : "")
+                       class="custom-control-input"
+                       tabindex="6"
+                       type="checkbox" />
+                <label class="custom-control-label" for="@Html.IdFor(model => model.AllowedEdit)">@Html.DisplayNameFor(model => model.AllowedEdit)</label>
+            </div>
+      </div>
+
+		
+      <!--Allowed Delete-->
+      <div class="col-xs-12 col-md-6">
+              <label class="form-label text-danger">@Html.DisplayNameFor(model => model.AllowedDelete)</label>
+              <div class="custom-control custom-checkbox">
+                 <input id="@Html.IdFor(model => model.AllowedDelete)"
+                       name="@Html.NameFor(model => model.AllowedDelete)"
+                       value="true" @(Model.AllowedDelete ? "checked=\"checked\"" : "")
+                       class="custom-control-input"
+                       tabindex="6"
+                       type="checkbox" />
+                <label class="custom-control-label" for="@Html.IdFor(model => model.AllowedDelete)">@Html.DisplayNameFor(model => model.AllowedDelete)</label>
+            </div>
+      </div>
+
+		
+      <!--Allowed Query-->
+      <div class="col-xs-12 col-md-6">
+              <label class="form-label text-danger">@Html.DisplayNameFor(model => model.AllowedQuery)</label>
+              <div class="custom-control custom-checkbox">
+                 <input id="@Html.IdFor(model => model.AllowedQuery)"
+                       name="@Html.NameFor(model => model.AllowedQuery)"
+                       value="true" @(Model.AllowedQuery ? "checked=\"checked\"" : "")
+                       class="custom-control-input"
+                       tabindex="6"
+                       type="checkbox" />
+                <label class="custom-control-label" for="@Html.IdFor(model => model.AllowedQuery)">@Html.DisplayNameFor(model => model.AllowedQuery)</label>
+            </div>
+      </div>
+
+        <!--Operation Manual-->
+        <div class="col-xs-12 col-md-6">
+            <label class="form-label ">@Html.DisplayNameFor(model => model.OperationManual)</label>
+			@Html.EditorFor(x => x.OperationManual, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.OperationManual) } })
+      
+         </div>
+
+        <!--Action Url-->
+        <div class="col-xs-12 col-md-6">
+            <label class="form-label ">@Html.DisplayNameFor(model => model.Url)</label>
+			@Html.EditorFor(x => x.Url, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.Url) } })
+      
+         </div>
+
+	    
+</div>
+

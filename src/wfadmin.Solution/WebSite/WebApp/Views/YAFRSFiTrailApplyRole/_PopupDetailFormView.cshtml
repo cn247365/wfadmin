@@ -1,0 +1,268 @@
+﻿﻿@model WebApp.Models.WfModel.YAFRSFiTrailApplyRole
+<!-- 弹出编辑窗体表单 -->
+<div id="yafrsrolelistdetailwindow" class="easyui-window"
+     title="编辑YAFRSFiTrailApplyRole"
+     data-options="modal:true,
+                    closed:true,
+                    minimizable:false,
+                    collapsible:false,
+                    maximized:false,
+                    iconCls:'fal fa-window',
+                    onBeforeClose:function(){
+                      var that = $(this);
+                      if(yafrsrolelisthasmodified()){
+                        $.messager.confirm('确认','你确定要放弃保存修改的记录?',function(r){
+                        if (r){
+                          var opts = that.panel('options');
+                          var onBeforeClose = opts.onBeforeClose;
+                          opts.onBeforeClose = function(){};
+                          that.panel('close');
+                          opts.onBeforeClose = onBeforeClose;
+                          hook = false;
+                        }
+                        });
+                        return false;
+                      }
+                    },
+                    onOpen:function(){
+                       $(this).window('vcenter');
+                       $(this).window('hcenter');
+                    },
+                    onRestore:function(){
+                    },
+                    onMaximize:function(){
+                    }
+                    " style="width:800px;height:450px;display:none">
+  <!-- toolbar -->
+  <div class="panel-content py-2 rounded-bottom border-faded border-left-0 border-right-0  text-muted bg-subtlelight-fade sticky-top">
+    <div class="d-flex justify-content-end pr-4">
+      <div class="btn-group btn-group-sm mr-1">
+        <button name="saveitembutton" class="btn btn-default">
+          <i class="fal fa-save"></i> @Html.L("Save")
+        </button>
+      </div>
+      <div class="btn-group btn-group-sm mr-1" id="deleteitem-btn-group">
+        <button name="deleteitembutton" class="btn btn-danger">
+          <i class="fal fa-trash-alt"></i> @Html.L("Delete")
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- panel container form  -->
+  <div class="panel-container show">
+    <div class="container">
+      <div class="panel-content">
+        <form id="yafrsrolelist_form"
+              class="easyui-form form-horizontal padding-10"
+              method="post"
+              data-options="novalidate:true,
+                            onChange: function(target){
+                              hook = true;
+                              $('button[name*=\'saveitembutton\']').prop('disabled', false);
+                             },
+                             onLoadSuccess:function(data){
+                               hook = false;
+                               $('button[name*=\'saveitembutton\']').prop('disabled', true);
+                             }">
+          @Html.AntiForgeryToken()
+          <!--Primary Key-->
+          @Html.HiddenFor(model => model.ID)
+          <fieldset class="form-group">
+            <div class="row h-100 align-items-center">
+
+              <!--CostCenter-->
+              <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.RoleName)</label>
+              <div class="col-md-4 col-sm-4 mb-1 pl-1">
+                <input id="@Html.IdFor(model => model.RoleName)"
+                       name="@Html.NameFor(model => model.RoleName)"
+                       value="@Html.ValueFor(model => model.RoleName)"
+                       tabindex="0"
+                       class="easyui-textbox"
+                       style="width:100%"
+                       type="text"
+                       data-options="prompt:'@Html.DescriptionFor(model => model.RoleName)',
+								 required:false,
+                                 validType: 'length[0,50]'
+                                 " />
+              </div>
+
+              <!--CostCenterName-->
+              <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.DisplayName)</label>
+              <div class="col-md-4 col-sm-4 mb-1 pl-1">
+                <input id="@Html.IdFor(model => model.DisplayName)"
+                       name="@Html.NameFor(model => model.DisplayName)"
+                       value="@Html.ValueFor(model => model.DisplayName)"
+                       tabindex="1"
+                       class="easyui-textbox"
+                       style="width:100%"
+                       type="text"
+                       data-options="prompt:'@Html.DescriptionFor(model => model.DisplayName)',
+								 required:false,
+                                 validType: 'length[0,50]'
+                                 " />
+              </div>
+
+
+              <!--CCMGlobalID-->
+              <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.GlobalID)</label>
+              <div class="col-md-4 col-sm-4 mb-1 pl-1">
+                <input id="@Html.IdFor(model => model.GlobalID)"
+                       name="@Html.NameFor(model => model.GlobalID)"
+                       value="@Html.ValueFor(model => model.GlobalID)"
+                       tabindex="2"
+                       class="easyui-textbox"
+                       style="width:100%"
+                       type="text"
+                       data-options="prompt:'@Html.DescriptionFor(model => model.GlobalID)',
+								 required:false,
+                                 validType: 'length[0,50]'
+                                 " />
+              </div>
+
+              <!--CCMShortName-->
+              <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.ShortName)</label>
+              <div class="col-md-4 col-sm-4 mb-1 pl-1">
+                <input id="@Html.IdFor(model => model.ShortName)"
+                       name="@Html.NameFor(model => model.ShortName)"
+                       value="@Html.ValueFor(model => model.ShortName)"
+                       tabindex="3"
+                       class="easyui-textbox"
+                       style="width:100%"
+                       type="text"
+                       data-options="prompt:'@Html.DescriptionFor(model => model.ShortName)',
+								 required:false,
+                                 validType: 'length[0,50]'
+                                 " />
+              </div>
+
+
+              <!--CCMDisplayName-->
+              <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.CompanyID)</label>
+              <div class="col-md-4 col-sm-4 mb-1 pl-1">
+                <input id="@Html.IdFor(model => model.CompanyID)"
+                       name="@Html.NameFor(model => model.CompanyID)"
+                       value="@Html.ValueFor(model => model.CompanyID)"
+                       tabindex="4"
+                       class="easyui-textbox"
+                       style="width:100%"
+                       type="text"
+                       data-options="prompt:'@Html.DescriptionFor(model => model.CompanyID)',
+								 required:false,
+                                 validType: 'length[0,50]'
+                                 " />
+              </div>
+
+
+              <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.TrailType)</label>
+              <div class="col-md-4 col-sm-4 mb-1 pl-1">
+                <input id="@Html.IdFor(model => model.TrailType)"
+                       name="@Html.NameFor(model => model.TrailType)"
+                       value="@Html.ValueFor(model => model.TrailType)"
+                       tabindex="4"
+                       class="easyui-textbox"
+                       style="width:100%"
+                       type="text"
+                       data-options="prompt:'@Html.DescriptionFor(model => model.TrailType)',
+								 required:false,
+                                 validType: 'length[0,50]'
+                                 " />
+              </div>
+
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 弹出窗体form表单 -->
+<!-- 弹出编辑对话框 -->
+<!--begin popup detailview javascript block -->
+<script type="text/javascript">
+  //当初始的 HTML 文档被完全加载和解析完成之后
+  document.addEventListener('DOMContentLoaded', function () {
+    //绑定按钮事件
+    $('button[name="saveitembutton"]').on('click', saveyafrsrolelistitem);
+    $('button[name="deleteitembutton"]').on('click', deleteyafrsrolelistitem);
+  });
+  //判断新增编辑状态
+  var MODELSTATE = 'Added';
+  var yafrsrolelistid = null;
+  function openroleitemdetailwindow(data, state) {
+    MODELSTATE = state;
+    //判断是否显示功能按钮
+    if (MODELSTATE === 'Added') {
+      $('#deleteitem-btn-group').hide();
+    } else {
+      $('#deleteitem-btn-group').show();
+    }
+ 
+    yafrsrolelistid = (data.Id || 0);
+    $('#yafrsrolelistdetailwindow').window('open');
+    $('#yafrsrolelist_form').form('reset');
+    $('#yafrsrolelist_form').form('load', data);
+  }
+  //删除当前记录
+  function deleteyafrsrolelistitem() {
+    $.messager.confirm('确认', '你确定要删除该记录?', result => {
+      if (result) {
+        const url = `/YAFRSFiTrailApplyRoles/Delete/${yafrsrolelistid}`;
+        $.get(url).done(res => {
+          if (res.success) {
+            toastr.success("删除成功");
+            $('#yafrsrolelistdetailwindow').window('close');
+            reloadData();
+          } else {
+            $.messager.alert('错误', res.err, 'error');
+          }
+        });
+      }
+    });
+  }
+  //async 保存数据
+  async function saveyafrsrolelistitem() {
+    const $yafrsrolelistform = $('#yafrsrolelist_form');
+    if ($yafrsrolelistform.form('enableValidation').form('validate')) {
+      let yafrsrolelist = $yafrsrolelistform.serializeJSON();
+      let url = '/YAFRSFiTrailApplyRoles/Edit';
+      //判断是新增或是修改方法
+      if (MODELSTATE === 'Added') {
+        url = '/YAFRSFiTrailApplyRoles/Create';
+      }
+      var token = $('input[name="__RequestVerificationToken"]', $yafrsrolelistform).val();
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+          __RequestVerificationToken: token,
+          yafrsrolelist: yafrsrolelist
+        },
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8'
+      })
+        .done(response => {
+          if (response.success) {
+            hook = false;
+            $yafrsrolelistform.form('disableValidation');
+            $('#yafrsrolelistdetailwindow').window("close");
+            toastr.success("保存成功");
+            reloadData();
+          } else {
+            $.messager.alert("错误", response.err, "error");
+          }
+        })
+        .fail((jqXHR, textStatus, errorThrown) => {
+          $.messager.alert('异常', `${jqXHR.status}: ${jqXHR.statusText} `, 'error');
+        });
+    }
+  }
+  //判断是否有没有保存的记录
+  function yafrsrolelisthasmodified() {
+    return hook;
+
+  }
+
+ 
+</script>
+

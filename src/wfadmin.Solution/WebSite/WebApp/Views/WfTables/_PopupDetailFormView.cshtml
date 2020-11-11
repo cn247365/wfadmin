@@ -1,0 +1,367 @@
+﻿﻿@model WebApp.Models.WfTable
+<!-- 弹出编辑窗体表单 -->
+ <div id="wftabledetailwindow" class="easyui-window" 
+      title="编辑Workflow Table List" 
+      data-options="modal:true,
+                    closed:true,
+                    minimizable:false,
+                    collapsible:false,
+                    maximized:false,
+                    iconCls:'fal fa-window',
+                    onBeforeClose:function(){
+                      var that = $(this);
+                      if(wftablehasmodified()){
+                        $.messager.confirm('确认','你确定要放弃保存修改的记录?',function(r){
+                        if (r){
+                          var opts = that.panel('options');
+                          var onBeforeClose = opts.onBeforeClose;
+                          opts.onBeforeClose = function(){};
+                          that.panel('close');
+                          opts.onBeforeClose = onBeforeClose;
+                          hook = false;
+                        }
+                        });
+                        return false;
+                      }
+                    },
+                    onOpen:function(){
+                       $(this).window('vcenter');
+                       $(this).window('hcenter');
+                    },
+                    onRestore:function(){
+                    },
+                    onMaximize:function(){
+                    }
+                    " style="width:800px;height:450px;display:none">
+  <!-- toolbar -->
+  <div class="panel-content py-2 rounded-bottom border-faded border-left-0 border-right-0  text-muted bg-subtlelight-fade sticky-top">
+  <div class="d-flex justify-content-end pr-4">
+        <div class="btn-group btn-group-sm mr-1">
+          <button name="saveitembutton"   class="btn btn-default">
+            <i class="fal fa-save"></i> @Html.L("Save")
+          </button>
+        </div>
+        <div class="btn-group btn-group-sm mr-1" id="deleteitem-btn-group">
+          <button  name="deleteitembutton" class="btn btn-danger">
+            <i class="fal fa-trash-alt"></i> @Html.L("Delete")
+          </button>
+        </div>
+    </div>
+  </div>
+ <!-- panel container form  -->
+ <div class="panel-container show">
+   <div class="container">
+    <div class="panel-content">
+           <form id="wftable_form" 
+              class="easyui-form form-horizontal padding-10" 
+              method="post" 
+              data-options="novalidate:true,
+                            onChange: function(target){
+                              hook = true;
+                              $('button[name*=\'saveitembutton\']').prop('disabled', false);
+                             },
+                             onLoadSuccess:function(data){
+                               hook = false;
+                               $('button[name*=\'saveitembutton\']').prop('disabled', true);
+                             }">
+  @Html.AntiForgeryToken()
+   <!--Primary Key-->
+  @Html.HiddenFor(model=>model.ID)
+   <fieldset class="form-group">
+   <div class="row h-100 align-items-center">
+
+   <!--Catalog-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"><span class="text-danger">*</span> @Html.DisplayNameFor(model => model.Table_Catalog)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.Table_Catalog)" 
+				   name="@Html.NameFor(model => model.Table_Catalog)" 
+				   value="@Html.ValueFor(model => model.Table_Catalog)"
+				   tabindex="0" required
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.Table_Catalog)',
+								 required:true, 
+                                 validType: 'length[0,32]'
+                                 " />
+       </div>
+				   
+   <!--Schema-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"><span class="text-danger">*</span> @Html.DisplayNameFor(model => model.Table_Schema)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.Table_Schema)" 
+				   name="@Html.NameFor(model => model.Table_Schema)" 
+				   value="@Html.ValueFor(model => model.Table_Schema)"
+				   tabindex="1" required
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.Table_Schema)',
+								 required:true, 
+                                 validType: 'length[0,32]'
+                                 " />
+       </div>
+				   
+
+   <!--Table Name-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"><span class="text-danger">*</span> @Html.DisplayNameFor(model => model.Table_Name)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.Table_Name)" 
+				   name="@Html.NameFor(model => model.Table_Name)" 
+				   value="@Html.ValueFor(model => model.Table_Name)"
+				   tabindex="2" required
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.Table_Name)',
+								 required:true, 
+                                 validType: 'length[0,128]'
+                                 " />
+       </div>
+				   
+   <!--Type-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"><span class="text-danger">*</span> @Html.DisplayNameFor(model => model.Table_Type)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.Table_Type)" 
+				   name="@Html.NameFor(model => model.Table_Type)" 
+				   value="@Html.ValueFor(model => model.Table_Type)"
+				   tabindex="3" required
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.Table_Type)',
+								 required:true, 
+                                 validType: 'length[0,32]'
+                                 " />
+       </div>
+				   
+
+   <!--Workflow Name-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.WorkflowName)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.WorkflowName)" 
+				   name="@Html.NameFor(model => model.WorkflowName)" 
+				   value="@Html.ValueFor(model => model.WorkflowName)"
+				   tabindex="4" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.WorkflowName)',
+								 required:false, 
+                                 validType: 'length[0,128]'
+                                 " />
+       </div>
+				   
+   <!--Description-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.Description)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.Description)" 
+				   name="@Html.NameFor(model => model.Description)" 
+				   value="@Html.ValueFor(model => model.Description)"
+				   tabindex="5" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.Description)',
+								 required:false, 
+                                 validType: 'length[0,128]'
+                                 " />
+       </div>
+				   
+
+     <!--Allowed Add-->
+       <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"><span class="text-danger">*</span> @Html.DisplayNameFor(model => model.AllowedAdd)</label>
+	   <div class="col-md-4 col-sm-4 mb-1 pl-1">      
+               <div class="custom-control custom-checkbox pt-1">
+                            <input id="@Html.IdFor(model => model.AllowedAdd)"
+                                   name="@Html.NameFor(model => model.AllowedAdd)"
+                                   value="true" @(Model.AllowedAdd ? "checked=\"checked\"" : "")
+                                   data-unchecked-value="false"
+                                   tabindex="6"
+                                   class="custom-control-input"
+                                   type="checkbox" />
+                            <label class="custom-control-label" for="@Html.NameFor(model => model.AllowedAdd)"> @Html.DisplayNameFor(model => model.AllowedAdd)</label>
+              </div>
+        </div>
+				   
+     <!--Allowed Edit-->
+       <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"><span class="text-danger">*</span> @Html.DisplayNameFor(model => model.AllowedEdit)</label>
+	   <div class="col-md-4 col-sm-4 mb-1 pl-1">      
+               <div class="custom-control custom-checkbox pt-1">
+                            <input id="@Html.IdFor(model => model.AllowedEdit)"
+                                   name="@Html.NameFor(model => model.AllowedEdit)"
+                                   value="true" @(Model.AllowedEdit ? "checked=\"checked\"" : "")
+                                   data-unchecked-value="false"
+                                   tabindex="7"
+                                   class="custom-control-input"
+                                   type="checkbox" />
+                            <label class="custom-control-label" for="@Html.NameFor(model => model.AllowedEdit)"> @Html.DisplayNameFor(model => model.AllowedEdit)</label>
+              </div>
+        </div>
+				   
+
+     <!--Allowed Delete-->
+       <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"><span class="text-danger">*</span> @Html.DisplayNameFor(model => model.AllowedDelete)</label>
+	   <div class="col-md-4 col-sm-4 mb-1 pl-1">      
+               <div class="custom-control custom-checkbox pt-1">
+                            <input id="@Html.IdFor(model => model.AllowedDelete)"
+                                   name="@Html.NameFor(model => model.AllowedDelete)"
+                                   value="true" @(Model.AllowedDelete ? "checked=\"checked\"" : "")
+                                   data-unchecked-value="false"
+                                   tabindex="8"
+                                   class="custom-control-input"
+                                   type="checkbox" />
+                            <label class="custom-control-label" for="@Html.NameFor(model => model.AllowedDelete)"> @Html.DisplayNameFor(model => model.AllowedDelete)</label>
+              </div>
+        </div>
+				   
+     <!--Allowed Query-->
+       <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"><span class="text-danger">*</span> @Html.DisplayNameFor(model => model.AllowedQuery)</label>
+	   <div class="col-md-4 col-sm-4 mb-1 pl-1">      
+               <div class="custom-control custom-checkbox pt-1">
+                            <input id="@Html.IdFor(model => model.AllowedQuery)"
+                                   name="@Html.NameFor(model => model.AllowedQuery)"
+                                   value="true" @(Model.AllowedQuery ? "checked=\"checked\"" : "")
+                                   data-unchecked-value="false"
+                                   tabindex="9"
+                                   class="custom-control-input"
+                                   type="checkbox" />
+                            <label class="custom-control-label" for="@Html.NameFor(model => model.AllowedQuery)"> @Html.DisplayNameFor(model => model.AllowedQuery)</label>
+              </div>
+        </div>
+				   
+
+   <!--Operation Manual-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.OperationManual)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.OperationManual)" 
+				   name="@Html.NameFor(model => model.OperationManual)" 
+				   value="@Html.ValueFor(model => model.OperationManual)"
+				   tabindex="10" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.OperationManual)',
+								 required:false, 
+                                 validType: 'length[0,256]'
+                                 " />
+       </div>
+				   
+   <!--Action Url-->
+        <label class="col-md-2 col-sm2  pt-1 pl-0 pr-0 form-label text-right"> @Html.DisplayNameFor(model => model.Url)</label>
+		<div class="col-md-4 col-sm-4 mb-1 pl-1">  
+			<input id="@Html.IdFor(model => model.Url)" 
+				   name="@Html.NameFor(model => model.Url)" 
+				   value="@Html.ValueFor(model => model.Url)"
+				   tabindex="11" 
+				   class="easyui-textbox" 
+                   style="width:100%"
+				   type="text" 
+				   data-options="prompt:'@Html.DescriptionFor(model => model.Url)',
+								 required:false, 
+                                 validType: 'length[0,128]'
+                                 " />
+       </div>
+				   
+	    </div> 
+      </fieldset>
+   </form>
+    </div>
+    </div>
+    </div>
+</div>
+
+<!-- 弹出窗体form表单 -->
+<!-- 弹出编辑对话框 -->
+
+<!--begin popup detailview javascript block -->
+<script type="text/javascript">
+ //当初始的 HTML 文档被完全加载和解析完成之后
+ document.addEventListener('DOMContentLoaded', function () {
+     //绑定按钮事件
+    $('button[name="saveitembutton"]').on('click', savewftableitem);
+    $('button[name="deleteitembutton"]').on('click', deletewftableitem);
+  });
+    //判断新增编辑状态
+    var MODELSTATE = 'Added';
+    var wftableid = null;
+    function openwftabledetailwindow(data,state) {
+         MODELSTATE = state;
+         //判断是否显示功能按钮
+        if (MODELSTATE === 'Added') {
+          $('#deleteitem-btn-group').hide();
+        } else {
+          $('#deleteitem-btn-group').show();
+        }
+        initwftabledetailview();
+         wftableid = (data.Id || 0);
+         $('#wftabledetailwindow').window('open');
+         $('#wftable_form').form('reset');
+         $('#wftable_form').form('load', data);
+             }
+  //删除当前记录
+  function deletewftableitem() {
+    $.messager.confirm('确认', '你确定要删除该记录?', result => {
+      if (result) {
+        const url = `/WfTables/Delete/${wftableid}`;
+        $.get(url).done(res => {
+          if (res.success) {
+            toastr.success("删除成功");
+            $('#wftabledetailwindow').window('close');
+            reloadData();
+          } else {
+            $.messager.alert('错误', res.err, 'error');
+          }
+        });
+      }
+    });
+  }
+    //async 保存数据
+    async function savewftableitem() { 
+      const $wftableform = $('#wftable_form');
+      if ($wftableform.form('enableValidation').form('validate')) {
+            let wftable = $wftableform.serializeJSON();
+            let url = '/WfTables/Edit';
+            //判断是新增或是修改方法
+            if (MODELSTATE === 'Added') {
+                url = '/WfTables/Create';
+            }
+            var token = $('input[name="__RequestVerificationToken"]', $wftableform).val();
+            $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        __RequestVerificationToken: token,
+                        wftable:wftable
+                    },
+                    dataType: 'json',
+                    contentType: 'application/x-www-form-urlencoded; charset=utf-8'
+                })
+                .done(response => {
+                    if (response.success) {
+                        hook = false;
+                        $wftableform.form('disableValidation');
+                        $('#wftabledetailwindow').window("close");
+                        toastr.success("保存成功"); 
+                        reloadData();
+                    } else {
+                        $.messager.alert("错误",   response.err, "error");
+                    }
+                    })
+                .fail((jqXHR, textStatus, errorThrown) => {
+                       $.messager.alert('异常', `${jqXHR.status}: ${jqXHR.statusText} `, 'error');
+                    });
+        }
+    }
+     //判断是否有没有保存的记录
+     function wftablehasmodified() {
+            return hook;
+
+     }
+
+
+function initwftabledetailview() {
+//回车光标移动到下个输入控件
+}
+</script>
+

@@ -1,0 +1,234 @@
+﻿@model WebApp.Models.WfModel.YAVHSInternalOrder
+@{
+  ViewData["Title"] = "YAVHSInternalOrder";
+  ViewData["PageName"] = "YAVHSInternalOrder_Index";
+  ViewData["Heading"] = "<i class='fal fa-window text-primary'></i>  Sync SAP Internal Order.";
+  ViewData["Category1"] = "Configuration";
+  ViewData["PageDescription"] = "sync VHS Internal Order";
+}
+@section HeadBlock {
+  <link href="@Fingerprint.Tag("/Content/css/notifications/toastr/toastr.css")" rel="stylesheet" />
+  <link href="@Fingerprint.Tag("/Scripts/easyui/themes/insdep/easyui.css")" rel="stylesheet" />
+  <link href="@Fingerprint.Tag("/Content/css/formplugins/bootstrap-daterangepicker/bootstrap-daterangepicker.css")" rel="stylesheet" />
+}
+<div class="row">
+  <div class="col-lg-12 col-xl-12">
+    <div id="panel-1" class="panel">
+      <div class="panel-hdr">
+        <h2>
+          Sync Internal Order
+        </h2>
+        <div class="panel-toolbar">
+          <button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"><i class="fal fa-window-minimize"></i></button>
+          <button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>
+          @*<button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"><i class="fal fa-trash-alt"></i></button>*@
+        </div>
+
+      </div>
+      <div class="panel-container enable-loader show">
+        <div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
+        <div class="panel-content py-2 rounded-bottom border-faded border-left-0 border-right-0  text-muted bg-faded bg-subtlelight-fade">
+          <div class="row no-gutters align-items-center">
+            <div class="col">
+              <!-- 开启授权控制请参考 @@if (Html.IsAuthorize("Create") -->
+              <div class="btn-group btn-group-sm">
+                <button name="searchbutton" onclick="reloadData()" class="btn btn-default"> <span class="fal fa-search mr-1"></span> @Html.L("Refresh") </button>
+              </div>
+              <div class="btn-group btn-group-sm">
+                <button  data-toggle="modal" data-target="#staticBackdrop" class="btn btn-info"> <span class="fal fa-sync-alt mr-1"></span> sync </button>
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+        <div class="panel-content">
+          <div class="table-responsive">
+            <table id="yavhsinternalorder_datagrid">
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Sync VHS Internal Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation" novalidate>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Internal Order.</label>
+            <input type="text" class="form-control" id="inputso" required aria-describedby="wbshelp">
+            <small id="wbshelp" class="form-text text-muted">Please enter the So to synchronize.</small>
+          </div>
+           
+          <button type="submit" class="btn btn-primary float-right">Submit</button>
+        </form>
+      </div>
+       
+    </div>
+  </div>
+</div>
+@section ScriptsBlock {
+  <script src="@Fingerprint.Tag("/Scripts/notifications/toastr/toastr.js")"></script>
+  <script src="@Fingerprint.Tag("/Scripts/formplugins/bootstrap-daterangepicker/bootstrap-daterangepicker.js")"></script>
+  <script src="@Fingerprint.Tag("/Scripts/easyui/jquery.easyui.min.js")"></script>
+  <script src="@Fingerprint.Tag("/Scripts/easyui/plugins/datagrid-filter.js")"></script>
+  <script src="@Fingerprint.Tag("/Scripts/jquery.easyui.component.js")"></script>
+  <script src="@Fingerprint.Tag("/Scripts/jquery.extend.formatter.js")"></script>
+  <script src="@Fingerprint.Tag("/Scripts/jquery.custom.extend.js")"></script>
+  <script src="@Fingerprint.Tag("/Scripts/plugin/jquery.serializejson/jquery.serializejson.min.js")"></script>
+  <script type="text/javascript">
+    function reloadData() {
+      $dg.datagrid('uncheckAll');
+      $dg.datagrid('reload');
+    }
+    var $dg = $('#yavhsinternalorder_datagrid');
+    $(() => {
+      //定义datagrid结构
+      $dg.datagrid({
+        //fit: false,
+        //height: window.innerHeight - 385,
+        rownumbers: true,
+        checkOnSelect: false,
+        selectOnCheck: false,
+        idField: 'ID',
+        sortName: 'ID',
+        sortOrder: 'desc',
+        remoteFilter: true,
+        singleSelect: true,
+        //url: '/WfTables/GetData',
+        method: 'get',
+        pagination: true,
+        clientPaging: false,
+        striped: true,
+        pageList: [10, 20, 50, 100, 500, 2000],
+        filterRules: [],
+        onBeforeLoad: function () {
+          $('.enable-loader').removeClass('enable-loader')
+        },
+        frozenColumns: [[
+          /*开启CheckBox选择功能*/
+          { field: 'ck', checkbox: true },
+
+        ]],
+        columns: [[
+
+          {    /*Catalog*/
+            field: 'ID',
+            title: 'ID',
+            width: 90,
+            hidden: false,
+            sortable: true,
+            resizable: true
+          },
+          {    /*Schema*/
+            field: 'Number',
+            title: 'Number',
+            width: 130,
+            hidden: false,
+            sortable: true,
+            resizable: true
+          },
+          {    /*Table Name*/
+            field: 'Name',
+            title: 'Name',
+            width: 230,
+            hidden: false,
+            sortable: true,
+            resizable: true
+          },
+        
+          {    /*Description*/
+            field: 'CompanyID',
+            title: 'CompanyID',
+            width: 120,
+            hidden: false,
+            sortable: true,
+            resizable: true
+          },
+          {    /*Description*/
+            field: 'CostCenterID',
+            title: 'CostCenterID',
+            width: 120,
+            hidden: false,
+            sortable: true,
+            resizable: true
+          },
+          {    /*Description*/
+            field: 'IsShow',
+            title: 'IsShow',
+            width: 120,
+            hidden: false,
+            sortable: true,
+            resizable: true
+          },
+          {    /*Description*/
+            field: 'AddDate',
+            title: 'AddDate',
+            width: 120,
+            hidden: false,
+            sortable: true,
+            resizable: true
+          },
+           
+        ]]
+      })
+        .datagrid('enableFilter', []
+        )
+        .datagrid('load', '/YAVHSInternalOrder/GetData');
+
+    });
+
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            } else {
+              $.messager.progress({
+                title: 'Synching..',
+                msg:'Please waiting ...'
+              });
+              $.get('/YAVHSInternalOrder/Sync?order=' + $('#inputso').val()).done(res => {
+                $.messager.progress('close');
+                if (res.success == true) {
+                  if (res.result.length > 0) {
+                    $.messager.alert('Information', `sync to workflow success,${res.result.toString()}`);
+                    $('#staticBackdrop').modal('toggle');
+                    reloadData();
+                  } else {
+                    $.messager.alert('Information', `not match so.`);
+                  }
+                  
+                } else {
+                  $.messager.alert('Error', res.err);
+                }
+              })
+
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+}

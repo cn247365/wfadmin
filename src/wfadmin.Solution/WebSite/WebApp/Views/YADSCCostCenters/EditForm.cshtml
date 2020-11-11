@@ -1,0 +1,83 @@
+﻿﻿@model WebApp.Models.WfModel.YADSCCostCenter
+  <div class="form-row">
+   @Html.HiddenFor(x=>x.Id)
+         <!--CostCenter-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.CostCenter)</label>
+			@Html.EditorFor(x => x.CostCenter, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.CostCenter) } })
+      
+         </div>
+
+        <!--CostCenterName-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.CostCenterName)</label>
+			@Html.EditorFor(x => x.CostCenterName, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.CostCenterName) } })
+      
+         </div>
+
+        <!--CCMGlobalID-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.CCMGlobalID)</label>
+			@Html.EditorFor(x => x.CCMGlobalID, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.CCMGlobalID) } })
+      
+         </div>
+
+        <!--CCMShortName-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.CCMShortName)</label>
+			@Html.EditorFor(x => x.CCMShortName, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.CCMShortName) } })
+      
+         </div>
+
+        <!--CCMDisplayName-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.CCMDisplayName)</label>
+			@Html.EditorFor(x => x.CCMDisplayName, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.CCMDisplayName) } })
+      
+         </div>
+
+        <!--BOMGlobalID-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.BOMGlobalID)</label>
+			@Html.EditorFor(x => x.BOMGlobalID, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.BOMGlobalID) } })
+      
+         </div>
+
+        <!--BOMShortName-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.BOMShortName)</label>
+			@Html.EditorFor(x => x.BOMShortName, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.BOMShortName) } })
+      
+         </div>
+
+        <!--BOMDisplayName-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.BOMDisplayName)</label>
+			@Html.EditorFor(x => x.BOMDisplayName, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.BOMDisplayName) } })
+      
+         </div>
+
+        <!--OverallResopnsible-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.OverallResopnsible)</label>
+			@Html.EditorFor(x => x.OverallResopnsible, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.OverallResopnsible) } })
+      
+         </div>
+
+        <!--BusLineFunHeadDisplayName-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.BusLineFunHeadDisplayName)</label>
+			@Html.EditorFor(x => x.BusLineFunHeadDisplayName, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.BusLineFunHeadDisplayName) } })
+      
+         </div>
+
+        <!--BusLineFunHeadGlobalID-->
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label class="form-label">  @Html.DisplayNameFor(model => model.BusLineFunHeadGlobalID)</label>
+			@Html.EditorFor(x => x.BusLineFunHeadGlobalID, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.BusLineFunHeadGlobalID) } })
+      
+         </div>
+
+	    
+</div>
+

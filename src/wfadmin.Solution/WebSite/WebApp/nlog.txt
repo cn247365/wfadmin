@@ -1,0 +1,70 @@
+2020-10-12 11:02:01.7762|FATAL|WebApp.MvcApplication|c:\Users\zzzhuh\AppData\Local\Temp\Temporary ASP.NET Files\vs\c34c8c8c\8b82163b\App_Web__popupdetailformview.cshtml.a2c46a1f.dnmdndwy.0.cs(31): error CS0234: 命名空间“SmartAdmin”中不存在类型或命名空间名称“Data”(是否缺少程序集引用?)
+2020-10-12 11:02:39.7057|FATAL|WebApp.MvcApplication|c:\Users\zzzhuh\AppData\Local\Temp\Temporary ASP.NET Files\vs\c34c8c8c\8b82163b\App_Web__popupdetailformview.cshtml.a2c46a1f.ewyehnyv.0.cs(31): error CS0234: 命名空间“SmartAdmin”中不存在类型或命名空间名称“Data”(是否缺少程序集引用?)
+2020-10-12 11:02:50.4528|FATAL|WebApp.MvcApplication|c:\Users\zzzhuh\AppData\Local\Temp\Temporary ASP.NET Files\vs\c34c8c8c\8b82163b\App_Web__popupdetailformview.cshtml.a2c46a1f.xt-zr8ag.0.cs(31): error CS0234: 命名空间“SmartAdmin”中不存在类型或命名空间名称“Data”(是否缺少程序集引用?)
+2020-10-12 12:25:35.2144|FATAL|WebApp.MvcApplication|Invalid object name 'YAVPCWBSNo'.
+2020-10-12 12:28:10.7981|FATAL|WebApp.MvcApplication|Invalid object name 'YAVPCWBSNo'.
+2020-10-12 12:29:51.6071|FATAL|WebApp.MvcApplication|Invalid object name 'YAVPCWBSNo'.
+2020-10-12 12:33:41.9920|FATAL|WebApp.MvcApplication|Invalid object name 'YAVPCWBSNo'.
+2020-10-12 12:34:45.9106|FATAL|WebApp.MvcApplication|Invalid object name 'YAVPCWBSNo'.
+2020-10-12 14:58:06.3508|FATAL|WebApp.MvcApplication|The view 'index' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/YAVPCVendor/index.aspx
+~/Views/YAVPCVendor/index.ascx
+~/Views/Shared/index.aspx
+~/Views/Shared/index.ascx
+~/Views/YAVPCVendor/index.cshtml
+~/Views/YAVPCVendor/index.vbhtml
+~/Views/Shared/index.cshtml
+~/Views/Shared/index.vbhtml
+2020-10-28 13:39:52.7525|FATAL|WebApp.MvcApplication|The view 'Index' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/YAVPCVendor/Index.aspx
+~/Views/YAVPCVendor/Index.ascx
+~/Views/Shared/Index.aspx
+~/Views/Shared/Index.ascx
+~/Views/YAVPCVendor/Index.cshtml
+~/Views/YAVPCVendor/Index.vbhtml
+~/Views/Shared/Index.cshtml
+~/Views/Shared/Index.vbhtml
+2020-10-28 13:41:52.6321|FATAL|WebApp.MvcApplication|Invalid object name 'AspNetLogs'.
+2020-10-28 13:43:26.4040|FATAL|WebApp.MvcApplication|无效操作。连接被关闭。
+2020-10-28 13:43:26.4479|FATAL|WebApp.MvcApplication|此连接不支持 MultipleActiveResultSets。
+2020-10-28 13:43:32.9234|FATAL|WebApp.MvcApplication|此连接不支持 MultipleActiveResultSets。
+2020-10-28 13:43:34.0528|FATAL|WebApp.MvcApplication|此连接不支持 MultipleActiveResultSets。
+2020-10-28 13:43:53.7892|FATAL|WebApp.MvcApplication|此连接不支持 MultipleActiveResultSets。
+2020-10-28 13:54:19.9013|FATAL|WebApp.MvcApplication|此连接不支持 MultipleActiveResultSets。
+2020-10-28 13:54:45.8021|FATAL|WebApp.MvcApplication|此连接不支持 MultipleActiveResultSets。
+2020-10-28 13:54:48.8454|FATAL|WebApp.MvcApplication|此连接不支持 MultipleActiveResultSets。
+2020-10-28 13:55:33.7845|FATAL|WebApp.MvcApplication|此连接不支持 MultipleActiveResultSets。
+2020-10-28 13:55:55.8436|FATAL|WebApp.MvcApplication|此连接不支持 MultipleActiveResultSets。
+2020-10-28 14:31:41.3468|FATAL|WebApp.MvcApplication|无法用“System.Int32”类型的实例调用在类型“System.String”上声明的方法“Boolean Contains(System.String)”
+2020-10-28 14:31:43.2345|FATAL|WebApp.MvcApplication|无法用“System.Int32”类型的实例调用在类型“System.String”上声明的方法“Boolean Contains(System.String)”
+2020-10-28 14:31:48.9192|FATAL|WebApp.MvcApplication|无法用“System.Int32”类型的实例调用在类型“System.String”上声明的方法“Boolean Contains(System.String)”
+2020-10-28 14:31:49.3302|FATAL|WebApp.MvcApplication|无法用“System.Int32”类型的实例调用在类型“System.String”上声明的方法“Boolean Contains(System.String)”
+2020-10-28 14:53:47.1211|FATAL|WebApp.MvcApplication|Invalid column name 'TrackingState'.
+Invalid column name 'ModifiedProperties'.
+Invalid column name 'CreatedDate'.
+Invalid column name 'CreatedBy'.
+Invalid column name 'LastModifiedDate'.
+Invalid column name 'LastModifiedBy'.
+Invalid column name 'TenantId'.
+2020-10-28 14:53:56.5353|FATAL|WebApp.MvcApplication|Invalid column name 'TrackingState'.
+Invalid column name 'ModifiedProperties'.
+Invalid column name 'CreatedDate'.
+Invalid column name 'CreatedBy'.
+Invalid column name 'LastModifiedDate'.
+Invalid column name 'LastModifiedBy'.
+Invalid column name 'TenantId'.
+2020-10-28 15:30:11.9801|FATAL|WebApp.MvcApplication|Invalid object name 'AspNetLogs'.
+2020-10-28 15:31:27.5396|FATAL|WebApp.MvcApplication|Invalid object name 'AspNetLogs'.
+2020-10-30 08:48:17.1389|FATAL|WebApp.MvcApplication|Invalid object name 'YAVPCWBSNo'.
+2020-10-30 08:52:50.7328|FATAL|WebApp.MvcApplication|The controller for path '/yvpcvendor' was not found or does not implement IController.
+2020-11-02 15:35:04.6075|FATAL|WebApp.MvcApplication|Invalid object name 'YAVHSWBSNo'.
+2020-11-02 15:35:55.1569|FATAL|WebApp.MvcApplication|Invalid object name 'YAVHSWBSNo'.
+2020-11-02 15:38:12.7420|FATAL|WebApp.MvcApplication|Invalid column name 'ProjectNo'.
+2020-11-04 10:28:25.3771|FATAL|WebApp.MvcApplication|c:\Users\zzzhuh\Source\tfs\wfadmin.Solution\WebSite\WebApp\Views\YAVPCCostCenter\Index.cshtml(435): error CS1061: “WebApp.Models.WfModel.YAVPCCostCenter”不包含“CostCenterName”的定义，并且找不到可接受类型为“WebApp.Models.WfModel.YAVPCCostCenter”的第一个参数的扩展方法“CostCenterName”(是否缺少 using 指令或程序集引用?)
+2020-11-05 13:31:23.4720|FATAL|WebApp.MvcApplication|Invalid object name 'YAVHSSalesOrder'.
+2020-11-05 16:35:44.1928|FATAL|WebApp.MvcApplication|Invalid object name 'YAVHSInternalOrder'.
+2020-11-06 09:40:50.6170|FATAL|WebApp.MvcApplication|The model item passed into the dictionary is of type 'WebApp.Models.WfModel.YAFRSFiTrailApplyRole', but this dictionary requires a model item of type 'WebApp.Models.WfModel.YAFRSRoleList'.
+2020-11-06 09:40:59.7217|FATAL|WebApp.MvcApplication|The model item passed into the dictionary is of type 'WebApp.Models.WfModel.YAFRSFiTrailApplyRole', but this dictionary requires a model item of type 'WebApp.Models.WfModel.YAFRSRoleList'.
+2020-11-09 10:03:35.0324|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
+2020-11-09 10:04:31.6253|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
+2020-11-09 17:31:22.5818|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
