@@ -474,6 +474,7 @@
     <Compile Include="Controllers\YAVPCVendorController.cs" />
     <Compile Include="Controllers\YADSCCostCenterController.cs" />
     <Compile Include="Controllers\YAVHSWBSNoController.cs" />
+    <Compile Include="Controllers\YAVPCVendorApproverController.cs" />
     <Compile Include="Controllers\YAVPCWBSNoController.cs" />
     <Compile Include="Migrations\202010081232581_init_cleardb.cs" />
     <Compile Include="Migrations\202010081232581_init_cleardb.designer.cs">
@@ -521,6 +522,7 @@
     <Compile Include="Models\WfModel\YAVPCVendor.cs" />
     <Compile Include="Models\WfModel\YAVHSWBSNo.cs" />
     <Compile Include="Models\WfModel\YAVPCSalesOrder.cs" />
+    <Compile Include="Models\WfModel\YAVPCVendorApprover.cs" />
     <Compile Include="Models\WfModel\YAVPCWBSNo.cs" />
     <Compile Include="Models\WfTable.cs" />
     <Compile Include="Models\YADSCCostCenter.cs" />
@@ -3914,6 +3916,8 @@
     <Content Include="Views\YAVHSFiRoleList\Index.cshtml" />
     <Content Include="Views\YAVHSVendorRoleList\_PopupDetailFormView.cshtml" />
     <Content Include="Views\YAVHSVendorRoleList\Index.cshtml" />
+    <Content Include="Views\YAVPCVendorApprover\_PopupDetailFormView.cshtml" />
+    <Content Include="Views\YAVPCVendorApprover\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
