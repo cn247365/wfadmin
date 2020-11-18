@@ -38,9 +38,9 @@ namespace WebApp.Controllers
     public async Task<JsonResult> GetData(int page = 1, int rows = 10, string sort = "ID", string order = "desc", string filterRules = "")
     {
       var filters = PredicateBuilder.From<YAVPCVendorApprover>(filterRules);
-      var count =await this.db.Queryable<YAVPCVendorApprover>().Where(filters)
+      var count = await this.db.Queryable<YAVPCVendorApprover>().Where(filters)
          .CountAsync();
-      var result=await this.db.Queryable<YAVPCVendorApprover>().Where(filters)
+      var result = await this.db.Queryable<YAVPCVendorApprover>().Where(filters)
         .OrderBy($"{sort} {order}")
         .ToPageListAsync(page, rows);
       return Json(new { total = count, rows = result }, JsonRequestBehavior.AllowGet);

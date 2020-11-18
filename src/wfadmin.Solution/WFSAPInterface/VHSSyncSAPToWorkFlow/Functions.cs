@@ -851,6 +851,467 @@ namespace VHSSyncSAPToWorkflow
             }
         }
 
+        public static DataTable ReadLFB1Table(RfcDestination prd, List<string> fields, string CompanyCode)
+        {
+            try
+            {
+                DataTable table = new DataTable("LFB1");
+                RfcRepository SapRfcRepository = prd.Repository;
+                IRfcFunction BapiRFCReadTable = SapRfcRepository.CreateFunction("RFC_READ_TABLE");
+                string strDelimiter = null; string strNodata = null;
+                BapiRFCReadTable.SetValue("Delimiter", strDelimiter);
+                BapiRFCReadTable.SetValue("No_Data", strNodata);
+                BapiRFCReadTable.SetValue("Query_Table", "LFB1");
 
+                IRfcTable RFC_READ_TABLE = BapiRFCReadTable.GetTable("Fields");
+                for (int i = 0; i < fields.Count; i++)
+                {
+                    RFC_READ_TABLE.Append();
+                    RFC_READ_TABLE.SetValue("Fieldname", fields[i].ToString());
+                    RFC_READ_TABLE.SetValue("Offset", string.Empty);
+                    RFC_READ_TABLE.SetValue("Length", string.Empty);
+                    RFC_READ_TABLE.SetValue("Type", string.Empty);
+                    RFC_READ_TABLE.SetValue("FieldText", string.Empty);
+                }
+                IRfcTable tableInop = BapiRFCReadTable.GetTable("OPTIONS");
+                tableInop.Append();//添加一行
+                tableInop.SetValue("Text", string.Format("BUKRS = '{0}'", CompanyCode));
+
+                BapiRFCReadTable.Invoke(prd);
+
+                IRfcTable dr = BapiRFCReadTable.GetTable("Fields");
+                //处理获得数据
+                for (int i = 0; i < dr.Count; i++)
+                {
+                    dr.CurrentIndex = i;
+                    string colName = dr.GetString("Fieldname");
+                    table.Columns.Add(new DataColumn(colName, typeof(string)));
+                }
+
+                IRfcTable data = BapiRFCReadTable.GetTable("Data");
+                if (data.Count > 0)
+                {
+                    //Loop over data rows
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        data.CurrentIndex = i;
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+
+                        //Loop over fields
+                        for (int j = 0; j < dr.Count; j++)
+                        {
+                            dr.CurrentIndex = j;
+                            string val = Functions.ParseTableRow(dr, data);
+                            row[j] = val;
+                        }
+                    }
+                }
+
+                return table;
+              
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable ReadLFM1Table(RfcDestination prd, List<string> fields, string Purchase_Organization, string VendorCode)
+        {
+            try
+            {
+                DataTable table = new DataTable("LFM1");
+                RfcRepository SapRfcRepository = prd.Repository;
+                IRfcFunction BapiRFCReadTable = SapRfcRepository.CreateFunction("RFC_READ_TABLE");
+                string strDelimiter = null; string strNodata = null;
+                BapiRFCReadTable.SetValue("Delimiter", strDelimiter);
+                BapiRFCReadTable.SetValue("No_Data", strNodata);
+                BapiRFCReadTable.SetValue("Query_Table", "LFM1");
+
+                IRfcTable RFC_READ_TABLE = BapiRFCReadTable.GetTable("Fields");
+                for (int i = 0; i < fields.Count; i++)
+                {
+                    RFC_READ_TABLE.Append();
+                    RFC_READ_TABLE.SetValue("Fieldname", fields[i].ToString());
+                    RFC_READ_TABLE.SetValue("Offset", string.Empty);
+                    RFC_READ_TABLE.SetValue("Length", string.Empty);
+                    RFC_READ_TABLE.SetValue("Type", string.Empty);
+                    RFC_READ_TABLE.SetValue("FieldText", string.Empty);
+                }
+                IRfcTable tableInop = BapiRFCReadTable.GetTable("OPTIONS");
+                tableInop.Append();//添加一行
+                // tableInop.SetValue("Text", string.Format("LIFNR = '{0}'", VendorCode));
+                tableInop.SetValue("Text", string.Format("LIFNR = '{0}' and EKORG = '{1}'", VendorCode, Purchase_Organization));
+
+                BapiRFCReadTable.Invoke(prd);
+
+                IRfcTable dr = BapiRFCReadTable.GetTable("Fields");
+                //处理获得数据
+                for (int i = 0; i < dr.Count; i++)
+                {
+                    dr.CurrentIndex = i;
+                    string colName = dr.GetString("Fieldname");
+                    table.Columns.Add(new DataColumn(colName, typeof(string)));
+                }
+
+                IRfcTable data = BapiRFCReadTable.GetTable("Data");
+                if (data.Count > 0)
+                {
+                    //Loop over data rows
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        data.CurrentIndex = i;
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+
+                        //Loop over fields
+                        for (int j = 0; j < dr.Count; j++)
+                        {
+                            dr.CurrentIndex = j;
+                            string val = Functions.ParseTableRow(dr, data);
+                            row[j] = val;
+                        }
+                    }
+                }
+
+                return table;
+
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable ReadLFBKTable(RfcDestination prd, List<string> fields, string VendorCode)
+        {
+            try
+            {
+                DataTable table = new DataTable("LFBK");
+                RfcRepository SapRfcRepository = prd.Repository;
+                IRfcFunction BapiRFCReadTable = SapRfcRepository.CreateFunction("RFC_READ_TABLE");
+                string strDelimiter = null; string strNodata = null;
+                BapiRFCReadTable.SetValue("Delimiter", strDelimiter);
+                BapiRFCReadTable.SetValue("No_Data", strNodata);
+                BapiRFCReadTable.SetValue("Query_Table", "LFBK");
+
+                IRfcTable RFC_READ_TABLE = BapiRFCReadTable.GetTable("Fields");
+                for (int i = 0; i < fields.Count; i++)
+                {
+                    RFC_READ_TABLE.Append();
+                    RFC_READ_TABLE.SetValue("Fieldname", fields[i].ToString());
+                    RFC_READ_TABLE.SetValue("Offset", string.Empty);
+                    RFC_READ_TABLE.SetValue("Length", string.Empty);
+                    RFC_READ_TABLE.SetValue("Type", string.Empty);
+                    RFC_READ_TABLE.SetValue("FieldText", string.Empty);
+                }
+                IRfcTable tableInop = BapiRFCReadTable.GetTable("OPTIONS");
+                tableInop.Append();//添加一行
+                tableInop.SetValue("Text", string.Format("LIFNR = '{0}'", VendorCode));
+
+                BapiRFCReadTable.Invoke(prd);
+
+                IRfcTable dr = BapiRFCReadTable.GetTable("Fields");
+                //处理获得数据
+                for (int i = 0; i < dr.Count; i++)
+                {
+                    dr.CurrentIndex = i;
+                    string colName = dr.GetString("Fieldname");
+                    table.Columns.Add(new DataColumn(colName, typeof(string)));
+                }
+
+                IRfcTable data = BapiRFCReadTable.GetTable("Data");
+                if (data.Count > 0)
+                {
+                    //Loop over data rows
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        data.CurrentIndex = i;
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+
+                        //Loop over fields
+                        for (int j = 0; j < dr.Count; j++)
+                        {
+                            dr.CurrentIndex = j;
+                            string val = Functions.ParseTableRow(dr, data);
+                            row[j] = val;
+                        }
+                    }
+                }
+
+                return table;
+
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable ReadBNKATable(RfcDestination prd, List<string> fields, string AccountKey)
+        {
+            try
+            {
+                DataTable table = new DataTable("BNKA");
+                RfcRepository SapRfcRepository = prd.Repository;
+                IRfcFunction BapiRFCReadTable = SapRfcRepository.CreateFunction("RFC_READ_TABLE");
+                string strDelimiter = null; string strNodata = null;
+                BapiRFCReadTable.SetValue("Delimiter", strDelimiter);
+                BapiRFCReadTable.SetValue("No_Data", strNodata);
+                BapiRFCReadTable.SetValue("Query_Table", "BNKA");
+
+                IRfcTable RFC_READ_TABLE = BapiRFCReadTable.GetTable("Fields");
+                for (int i = 0; i < fields.Count; i++)
+                {
+                    RFC_READ_TABLE.Append();
+                    RFC_READ_TABLE.SetValue("Fieldname", fields[i].ToString());
+                    RFC_READ_TABLE.SetValue("Offset", string.Empty);
+                    RFC_READ_TABLE.SetValue("Length", string.Empty);
+                    RFC_READ_TABLE.SetValue("Type", string.Empty);
+                    RFC_READ_TABLE.SetValue("FieldText", string.Empty);
+                }
+                IRfcTable tableInop = BapiRFCReadTable.GetTable("OPTIONS");
+                tableInop.Append();//添加一行
+                tableInop.SetValue("Text", string.Format("BANKL = '{0}'", AccountKey));
+
+                BapiRFCReadTable.Invoke(prd);
+
+                IRfcTable dr = BapiRFCReadTable.GetTable("Fields");
+                //处理获得数据
+                for (int i = 0; i < dr.Count; i++)
+                {
+                    dr.CurrentIndex = i;
+                    string colName = dr.GetString("Fieldname");
+                    table.Columns.Add(new DataColumn(colName, typeof(string)));
+                }
+
+                IRfcTable data = BapiRFCReadTable.GetTable("Data");
+                if (data.Count > 0)
+                {
+                    //Loop over data rows
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        data.CurrentIndex = i;
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+
+                        //Loop over fields
+                        for (int j = 0; j < dr.Count; j++)
+                        {
+                            dr.CurrentIndex = j;
+                            string val = Functions.ParseTableRow(dr, data);
+                            row[j] = val;
+                        }
+                    }
+                }
+
+                return table;
+
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable ReadLFA1Table(RfcDestination prd, List<string> fields, string VendorCode)
+        {
+            try
+            {
+                DataTable table = new DataTable("LFA1");
+                RfcRepository SapRfcRepository = prd.Repository;
+                IRfcFunction BapiRFCReadTable = SapRfcRepository.CreateFunction("RFC_READ_TABLE");
+                string strDelimiter = null; string strNodata = null;
+                BapiRFCReadTable.SetValue("Delimiter", strDelimiter);
+                BapiRFCReadTable.SetValue("No_Data", strNodata);
+                BapiRFCReadTable.SetValue("Query_Table", "LFA1");
+
+                IRfcTable RFC_READ_TABLE = BapiRFCReadTable.GetTable("Fields");
+                for (int i = 0; i < fields.Count; i++)
+                {
+                    RFC_READ_TABLE.Append();
+                    RFC_READ_TABLE.SetValue("Fieldname", fields[i].ToString());
+                    RFC_READ_TABLE.SetValue("Offset", string.Empty);
+                    RFC_READ_TABLE.SetValue("Length", string.Empty);
+                    RFC_READ_TABLE.SetValue("Type", string.Empty);
+                    RFC_READ_TABLE.SetValue("FieldText", string.Empty);
+                }
+                IRfcTable tableInop = BapiRFCReadTable.GetTable("OPTIONS");
+                tableInop.Append();//添加一行
+                tableInop.SetValue("Text", string.Format("LIFNR = '{0}'", VendorCode));
+
+                BapiRFCReadTable.Invoke(prd);
+
+                IRfcTable dr = BapiRFCReadTable.GetTable("Fields");
+                //处理获得数据
+                for (int i = 0; i < dr.Count; i++)
+                {
+                    dr.CurrentIndex = i;
+                    string colName = dr.GetString("Fieldname");
+                    table.Columns.Add(new DataColumn(colName, typeof(string)));
+                }
+
+                IRfcTable data = BapiRFCReadTable.GetTable("Data");
+                if (data.Count > 0)
+                {
+                    //Loop over data rows
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        data.CurrentIndex = i;
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+
+                        //Loop over fields
+                        for (int j = 0; j < dr.Count; j++)
+                        {
+                            dr.CurrentIndex = j;
+                            string val = Functions.ParseTableRow(dr, data);
+                            row[j] = val;
+                        }
+                    }
+                }
+
+                return table;
+
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable ReadADR6Table(RfcDestination prd, List<string> fields, string VendorAddressNumber)
+        {
+            try
+            {
+                DataTable table = new DataTable("ADR6");
+                RfcRepository SapRfcRepository = prd.Repository;
+                IRfcFunction BapiRFCReadTable = SapRfcRepository.CreateFunction("RFC_READ_TABLE");
+                string strDelimiter = null; string strNodata = null;
+                BapiRFCReadTable.SetValue("Delimiter", strDelimiter);
+                BapiRFCReadTable.SetValue("No_Data", strNodata);
+                BapiRFCReadTable.SetValue("Query_Table", "ADR6");
+
+                IRfcTable RFC_READ_TABLE = BapiRFCReadTable.GetTable("Fields");
+                for (int i = 0; i < fields.Count; i++)
+                {
+                    RFC_READ_TABLE.Append();
+                    RFC_READ_TABLE.SetValue("Fieldname", fields[i].ToString());
+                    RFC_READ_TABLE.SetValue("Offset", string.Empty);
+                    RFC_READ_TABLE.SetValue("Length", string.Empty);
+                    RFC_READ_TABLE.SetValue("Type", string.Empty);
+                    RFC_READ_TABLE.SetValue("FieldText", string.Empty);
+                }
+                IRfcTable tableInop = BapiRFCReadTable.GetTable("OPTIONS");
+                tableInop.Append();//添加一行
+                tableInop.SetValue("Text", string.Format("ADDRNUMBER = '{0}'", VendorAddressNumber));
+
+                BapiRFCReadTable.Invoke(prd);
+
+                IRfcTable dr = BapiRFCReadTable.GetTable("Fields");
+                //处理获得数据
+                for (int i = 0; i < dr.Count; i++)
+                {
+                    dr.CurrentIndex = i;
+                    string colName = dr.GetString("Fieldname");
+                    table.Columns.Add(new DataColumn(colName, typeof(string)));
+                }
+
+                IRfcTable data = BapiRFCReadTable.GetTable("Data");
+                if (data.Count > 0)
+                {
+                    //Loop over data rows
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        data.CurrentIndex = i;
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+
+                        //Loop over fields
+                        for (int j = 0; j < dr.Count; j++)
+                        {
+                            dr.CurrentIndex = j;
+                            string val = Functions.ParseTableRow(dr, data);
+                            row[j] = val;
+                        }
+                    }
+                }
+
+                return table;
+
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable ReadADRCTable(RfcDestination prd, List<string> fields, string VendorAddressNumber)
+        {
+            try
+            {
+                DataTable table = new DataTable("ADRC");
+                RfcRepository SapRfcRepository = prd.Repository;
+                IRfcFunction BapiRFCReadTable = SapRfcRepository.CreateFunction("RFC_READ_TABLE");
+                string strDelimiter = null; string strNodata = null;
+                BapiRFCReadTable.SetValue("Delimiter", strDelimiter);
+                BapiRFCReadTable.SetValue("No_Data", strNodata);
+                BapiRFCReadTable.SetValue("Query_Table", "ADRC");
+
+                IRfcTable RFC_READ_TABLE = BapiRFCReadTable.GetTable("Fields");
+                for (int i = 0; i < fields.Count; i++)
+                {
+                    RFC_READ_TABLE.Append();
+                    RFC_READ_TABLE.SetValue("Fieldname", fields[i].ToString());
+                    RFC_READ_TABLE.SetValue("Offset", string.Empty);
+                    RFC_READ_TABLE.SetValue("Length", string.Empty);
+                    RFC_READ_TABLE.SetValue("Type", string.Empty);
+                    RFC_READ_TABLE.SetValue("FieldText", string.Empty);
+                }
+                IRfcTable tableInop = BapiRFCReadTable.GetTable("OPTIONS");
+                tableInop.Append();//添加一行
+                tableInop.SetValue("Text", string.Format("ADDRNUMBER = '{0}'", VendorAddressNumber));
+
+                BapiRFCReadTable.Invoke(prd);
+
+                IRfcTable dr = BapiRFCReadTable.GetTable("Fields");
+                //处理获得数据
+                for (int i = 0; i < dr.Count; i++)
+                {
+                    dr.CurrentIndex = i;
+                    string colName = dr.GetString("Fieldname");
+                    table.Columns.Add(new DataColumn(colName, typeof(string)));
+                }
+
+                IRfcTable data = BapiRFCReadTable.GetTable("Data");
+                if (data.Count > 0)
+                {
+                    //Loop over data rows
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        data.CurrentIndex = i;
+                        DataRow row = table.NewRow();
+                        table.Rows.Add(row);
+
+                        //Loop over fields
+                        for (int j = 0; j < dr.Count; j++)
+                        {
+                            dr.CurrentIndex = j;
+                            string val = Functions.ParseTableRow(dr, data);
+                            row[j] = val;
+                        }
+                    }
+                }
+
+                return table;
+
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

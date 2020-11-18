@@ -68,3 +68,11 @@ Invalid column name 'TenantId'.
 2020-11-09 10:03:35.0324|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
 2020-11-09 10:04:31.6253|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
 2020-11-09 17:31:22.5818|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
+2020-11-16 17:02:27.3533|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
+2020-11-17 10:02:50.5453|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
+2020-11-18 09:51:40.9388|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
+2020-11-18 13:20:36.3254|FATAL|WebApp.MvcApplication|未将对象引用设置到对象的实例。
+2020-11-18 13:22:38.0648|FATAL|WebApp.MvcApplication|Invalid column name 'CreatedDate'.
+Invalid column name 'DownloadedDate'.
+2020-11-18 13:23:47.8362|FATAL|WebApp.MvcApplication|Invalid column name 'CreatedDate'.
+Invalid column name 'DownloadedDate'.

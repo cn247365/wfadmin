@@ -233,9 +233,42 @@ namespace VHSSyncSAPToWorkflow
 
             return result;
         }
-     
 
 
+        public IEnumerable<string> UpdateVendorForGBS(string vendorcode)
+        {
+            var result = new List<string>();
+            var vendorcodes = vendorcode.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var prd = CreateRfcDestination();
+            List<string> CompanyList = new List<string>();
+            CompanyList.Add("4130");
+            List<string> fields = new List<string>();
+            fields.Add("LIFNR");
+            fields.Add("BUKRS");
+            fields.Add("ERDAT");
+            foreach (string CompanyCode in CompanyList)
+            {
+               
+                DataTable dt = Functions.ReadLFB1Table(prd, fields, CompanyCode);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    string VendorCode = row["LIFNR"].ToString();
+                   if (vendorcodes.Any(x => VendorCode.Contains(x)))
+                    {
+                        result.Add(VendorCode);
+                        VendorData objTemp = GetVendorData(prd, VendorCode, CompanyCode);
+                        string delsql = string.Format(" delete from  YAGBSNPNVendor where VendorCode='{0}' and CompanyCode='{1}'", objTemp.VendorCode, objTemp.CompanyCode);
+                        DBHelper.ExecuteSql(delsql, SqlConnectionString);
+                        string sql = string.Format(" insert into YAGBSNPNVendor (VendorCode,Name_CN,Name_EN,BankName,BankAccount,PaymentTerms,ContactPerson,Email,Address,Tel,Tel2,Address_CN,CompanyCode,CreatedDate,DownloadedDate) Values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}')", objTemp.VendorCode, objTemp.Name_CN, objTemp.Name_EN, objTemp.Bank, objTemp.BankAccount, objTemp.PaymentTerms, objTemp.ContactPerson, objTemp.Email, objTemp.Address, objTemp.Tel, objTemp.Tel2, objTemp.AddressCN, objTemp.CompanyCode, DateTime.Now.Date.ToShortDateString(), DateTime.Now.Date.ToShortDateString());
+                        DBHelper.ExecuteSql(sql, SqlConnectionString);
+                    }
+              
+                }
+            }
+
+            return result;
+        }
 
 
 
@@ -277,7 +310,135 @@ namespace VHSSyncSAPToWorkflow
 
         }
 
+        public VendorData GetVendorData(RfcDestination prd, string VendorCode, string CompanyCode)
+        {
+            VendorData objTemp = new VendorData();
+            objTemp.CompanyCode = CompanyCode;
+            objTemp.VendorCode = VendorCode;
 
+            #region //Get Payment Terms and Contact Person
+            string Purchase_Organization = "4130"; //For Company 2130/2131/2170  Purchase Organization is 2130           
+
+            List<string> fields = new List<string>();
+            fields.Add("LIFNR");//PO Number
+            fields.Add("EKORG");//Purchase Organization
+            fields.Add("ZTERM");//Payment terms
+            fields.Add("VERKF"); //Contact Person
+
+            DataTable dt = Functions.ReadLFM1Table(prd, fields, Purchase_Organization, VendorCode);
+            if (dt.Rows.Count > 0)
+            {
+                objTemp.PaymentTerms = dt.Rows[0]["ZTERM"].ToString().TrimEnd().Replace("'", "''");
+                objTemp.ContactPerson = dt.Rows[0]["VERKF"].ToString().TrimEnd().Replace("'", "''");
+            }
+            #endregion
+
+            #region //Get NameCN NameEN BankAccount BankName
+            //Get NameCN NameEN BanckAccount
+            //RfcRepository SapRfcRepository = prd.Repository;
+            //IRfcFunction BapiVendorBank = SapRfcRepository.CreateFunction("ZBAPI_VENDOR_BANK");
+            //BapiVendorBank.SetValue("Companycode", CompanyCode);
+            //BapiVendorBank.SetValue("Vendor", Functions.FormatVendorCode(VendorCode));
+            //BapiVendorBank.Invoke(prd);
+            //IRfcTable VendorBank = BapiVendorBank.GetTable("Vendorbank");
+            //VendorBank.CurrentIndex = 0;
+            //objTemp.Name_CN = VendorBank.GetString("Name1").Replace("'", "''"); //Chinese Name
+            //objTemp.Name_EN = VendorBank.GetString("Name2").Replace("'", "''"); //English Name
+            //objTemp.BankAccount = VendorBank.GetString("Bankn").TrimEnd().Replace("'", "''"); //Bank Account
+            //string AccountKey = VendorBank.GetString("Bankl"); //Bank Account key
+            #endregion
+
+            #region //Get BANK Account key from LFBK & bank account from BNKA
+            List<string> fields6 = new List<string>();
+            fields6.Add("LIFNR"); //Bank AccoutnKey
+            fields6.Add("BANKL");
+            fields6.Add("BANKN");
+
+            DataTable dtLFBK = Functions.ReadLFBKTable(prd, fields6, VendorCode);
+            if (dtLFBK.Rows.Count > 0)
+            {
+                objTemp.BankAccount = dtLFBK.Rows[0]["BANKN"].ToString().TrimEnd().Replace("'", "''"); //Bank Name
+                string AccountKey = dtLFBK.Rows[0]["BANKL"].ToString().TrimEnd().Replace("'", "''"); //Bank Name
+
+                //Get Bank Name by AccountKey 
+                List<string> fields2 = new List<string>();
+                fields2.Add("BANKL"); //Bank AccoutnKey
+                fields2.Add("BANKA");
+                DataTable dtBank = Functions.ReadBNKATable(prd, fields2, AccountKey);
+                if (dtBank.Rows.Count > 0)
+                {
+                    objTemp.Bank = dtBank.Rows[0]["BANKA"].ToString().TrimEnd().Replace("'", "''"); //Bank Name
+                }
+            }
+
+
+            #endregion
+
+            #region //Get Street
+            string VendorName = string.Empty;
+            RfcRepository SapRfcRepository2 = prd.Repository;
+            IRfcFunction BapiVendorGetDetail = SapRfcRepository2.CreateFunction("BAPI_VENDOR_GETDETAIL");
+            BapiVendorGetDetail.SetValue("Companycode", CompanyCode);
+            BapiVendorGetDetail.SetValue("Vendorno", VendorCode);
+            BapiVendorGetDetail.Invoke(prd);
+            IRfcStructure Generaldetail = BapiVendorGetDetail.GetStructure("Generaldetail");
+            objTemp.Address = Generaldetail.GetString("Street").TrimEnd().Replace("'", "''");
+            objTemp.Tel = Generaldetail.GetString("Telephone");
+            objTemp.Tel2 = Generaldetail.GetString("Telephone2");
+            #endregion
+
+            #region //Get Email / Address /Address CN
+            //Get Vendor Address
+            List<string> fields3 = new List<string>();
+            fields3.Add("LIFNR");
+            fields3.Add("ADRNR");
+            DataTable dtLFA1 = Functions.ReadLFA1Table(prd, fields3, VendorCode);
+            if (dtLFA1.Rows.Count > 0)
+            {
+                string VendorAddress = dtLFA1.Rows[0]["ADRNR"].ToString();
+                List<string> fields4 = new List<string>();
+                fields4.Add("SMTP_ADDR");
+                fields4.Add("ADDRNUMBER");
+                DataTable dtADR6 = Functions.ReadADR6Table(prd, fields4, VendorAddress);
+                if (dtADR6.Rows.Count > 0)
+                {
+                    objTemp.Email = dtADR6.Rows[0]["SMTP_ADDR"].ToString().TrimEnd().Replace("'", "''");
+                }
+
+                #region // Get Chinese Address  Chinese NAme Name English Name
+                List<string> fields5 = new List<string>();
+                fields5.Add("ADDRNUMBER");
+                fields5.Add("STREET");
+                fields5.Add("NATION");
+                fields5.Add("NAME1");
+                fields5.Add("NAME2");
+                DataTable dtADRC = Functions.ReadADRCTable(prd, fields5, VendorAddress);
+
+                if (dtADRC.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dtADRC.Rows)
+                    {
+                        if (row["NATION"].ToString().Contains("C"))
+                        {
+                            objTemp.AddressCN = row["STREET"].ToString().TrimEnd().Replace("'", "''");
+                            objTemp.Name_CN = row["NAME1"].ToString().TrimEnd().Replace("'", "''") + row["NAME2"].ToString().TrimEnd().Replace("'", "''");
+                        }
+                        else
+                        {
+                            objTemp.Address = row["STREET"].ToString().TrimEnd().Replace("'", "''");
+                            objTemp.Name_EN = row["NAME1"].ToString().TrimEnd().Replace("'", "''") + row["NAME2"].ToString().TrimEnd().Replace("'", "''");
+                        }
+                    }
+                }
+
+                #endregion
+            }
+            #endregion
+
+
+            return objTemp;
+
+        }
         #region//Update Exchange Rate  OK
         //Update Exchagne Rate
         public void UpdateExchangeRate(RfcDestination prd)

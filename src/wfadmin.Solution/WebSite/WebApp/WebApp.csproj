@@ -471,6 +471,7 @@
     <Compile Include="Controllers\YADSCCostCentersController.cs" />
     <Compile Include="Controllers\YAVHSSalesOrderController.cs" />
     <Compile Include="Controllers\YAVPCSalesOrderController.cs" />
+    <Compile Include="Controllers\YAGBSNPNVendorController.cs" />
     <Compile Include="Controllers\YAVPCVendorController.cs" />
     <Compile Include="Controllers\YADSCCostCenterController.cs" />
     <Compile Include="Controllers\YAVHSWBSNoController.cs" />
@@ -519,6 +520,7 @@
     <Compile Include="Models\WfModel\YAVHSCostCenter.cs" />
     <Compile Include="Models\WfModel\YADSCCostCenter.cs" />
     <Compile Include="Models\WfModel\YAVHSSalesOrder.cs" />
+    <Compile Include="Models\WfModel\YAGBSNPNVendor.cs" />
     <Compile Include="Models\WfModel\YAVPCVendor.cs" />
     <Compile Include="Models\WfModel\YAVHSWBSNo.cs" />
     <Compile Include="Models\WfModel\YAVPCSalesOrder.cs" />
@@ -3918,6 +3920,7 @@
     <Content Include="Views\YAVHSVendorRoleList\Index.cshtml" />
     <Content Include="Views\YAVPCVendorApprover\_PopupDetailFormView.cshtml" />
     <Content Include="Views\YAVPCVendorApprover\Index.cshtml" />
+    <Content Include="Views\YAGBSNPNVendor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
