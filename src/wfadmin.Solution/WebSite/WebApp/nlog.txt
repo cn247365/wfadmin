@@ -76,3 +76,6 @@ Invalid column name 'TenantId'.
 Invalid column name 'DownloadedDate'.
 2020-11-18 13:23:47.8362|FATAL|WebApp.MvcApplication|Invalid column name 'CreatedDate'.
 Invalid column name 'DownloadedDate'.
+2020-11-19 09:52:27.3538|FATAL|WebApp.MvcApplication|Child actions are not allowed to perform redirect actions.
+2020-11-19 10:02:02.4424|FATAL|WebApp.MvcApplication|值不能为 null。
+参数名: source

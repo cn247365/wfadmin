@@ -36,7 +36,7 @@
 				</a>
 			</div>
  
-			@if (this.Request.IsAuthenticated)
+			@if (this.Request.IsAuthenticated && !string.IsNullOrEmpty(ViewBag.Avatar))
       {
 			 
 			<div>

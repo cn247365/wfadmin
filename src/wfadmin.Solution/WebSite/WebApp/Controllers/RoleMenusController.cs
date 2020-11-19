@@ -15,6 +15,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using TrackableEntities;
 using System.Threading.Tasks;
+using System.Web.Security;
+using Microsoft.Owin.Security;
 
 namespace WebApp.Controllers
 {
@@ -45,6 +47,7 @@ namespace WebApp.Controllers
         _roleManager = value;
       }
     }
+    private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
     //Please RegisterType UnityConfig.cs
     //container.RegisterType<IRepositoryAsync<RoleMenu>, Repository<RoleMenu>>();
@@ -89,11 +92,19 @@ namespace WebApp.Controllers
     [OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.Client)]
     public ActionResult RenderMenus()
     {
-      var user = this.UserManager.FindByName(this.User.Identity.Name);
-      var roles = UserManager.GetRoles(user.Id);
-      //var roles = new string[] { "admin" };
-      var menus = _roleMenuService.RenderMenus(roles.ToArray());
-      return PartialView("_navMenuBar", menus);
+      try
+      {
+        var user = this.UserManager.FindByName(this.User.Identity.Name);
+        var roles = UserManager.GetRoles(user.Id);
+        //var roles = new string[] { "admin" };
+        var menus = _roleMenuService.RenderMenus(roles.ToArray());
+        return PartialView("_navMenuBar", menus);
+      }
+      catch (Exception e) {
+        FormsAuthentication.SignOut();
+        this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie, DefaultAuthenticationTypes.TwoFactorCookie);
+        return PartialView("_navMenuBar", new List<MenuItem>());
+      }
     }
     public async Task<ActionResult> GetMenuList()
     {
