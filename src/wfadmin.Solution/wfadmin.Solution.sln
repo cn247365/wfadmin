@@ -22,6 +22,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VHSSyncSAPToWorkFlow", "WFS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPCVendorSAPtoWorkflow", "WFSAPInterface\VPCVendorSAPtoWorkflow\VPCVendorSAPtoWorkflow.csproj", "{7E5BB7AA-BB23-4813-A976-3CABC0619907}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "saplib", "saplib", "{EDBA2E34-2490-4E40-AE39-BAC66503D1A4}"
+	ProjectSection(SolutionItems) = preProject
+		WFSAPInterface\saplib\SAP.Connector.dll = WFSAPInterface\saplib\SAP.Connector.dll
+		WFSAPInterface\saplib\SAP.Connector.Rfc.dll = WFSAPInterface\saplib\SAP.Connector.Rfc.dll
+		WFSAPInterface\saplib\sapnco.dll = WFSAPInterface\saplib\sapnco.dll
+		WFSAPInterface\saplib\sapnco_utils.dll = WFSAPInterface\saplib\sapnco_utils.dll
+		WFSAPInterface\saplib\SAPVoithProxy.dll = WFSAPInterface\saplib\SAPVoithProxy.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +62,7 @@ Global
 		{790ABF24-F6E3-4753-8B8B-84C8AB54FF60} = {5CA01F4F-1E8A-4C60-AB68-CC2523DBB54D}
 		{7CD4CA08-9F4A-491C-AC1B-1EB38EB29820} = {5CA01F4F-1E8A-4C60-AB68-CC2523DBB54D}
 		{7E5BB7AA-BB23-4813-A976-3CABC0619907} = {5CA01F4F-1E8A-4C60-AB68-CC2523DBB54D}
+		{EDBA2E34-2490-4E40-AE39-BAC66503D1A4} = {5CA01F4F-1E8A-4C60-AB68-CC2523DBB54D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {892DE1D1-5C6F-418A-91AD-3C6A06F9C123}

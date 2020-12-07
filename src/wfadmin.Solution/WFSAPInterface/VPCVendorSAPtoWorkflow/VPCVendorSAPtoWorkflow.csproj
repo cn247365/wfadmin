@@ -40,13 +40,13 @@
       <HintPath>..\WFSAPInterface\saplib\SAP.Connector.Rfc.dll</HintPath>
     </Reference>
     <Reference Include="sapnco">
-      <HintPath>..\WFSAPInterface\saplib\sapnco.dll</HintPath>
+      <HintPath>..\saplib\sapnco.dll</HintPath>
     </Reference>
     <Reference Include="sapnco_utils">
-      <HintPath>..\WFSAPInterface\saplib\sapnco_utils.dll</HintPath>
+      <HintPath>..\saplib\sapnco_utils.dll</HintPath>
     </Reference>
     <Reference Include="SAPVoithProxy">
-      <HintPath>..\WFSAPInterface\saplib\SAPVoithProxy.dll</HintPath>
+      <HintPath>..\saplib\SAPVoithProxy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

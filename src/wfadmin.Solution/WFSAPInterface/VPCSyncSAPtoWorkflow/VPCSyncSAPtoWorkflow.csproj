@@ -39,13 +39,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\saplib\SAP.Connector.Rfc.dll</HintPath>
     </Reference>
-    <Reference Include="sapnco">
+    <Reference Include="sapnco, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\saplib\sapnco.dll</HintPath>
     </Reference>
-    <Reference Include="sapnco_utils">
+    <Reference Include="sapnco_utils, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\saplib\sapnco_utils.dll</HintPath>
     </Reference>
-    <Reference Include="SAPVoithProxy">
+    <Reference Include="SAPVoithProxy, Version=1.0.3310.21158, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\saplib\SAPVoithProxy.dll</HintPath>
     </Reference>
     <Reference Include="System" />

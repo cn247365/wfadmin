@@ -1845,10 +1845,6 @@
     <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-texteditor\jquery.texteditor.js" />
     <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-texteditor\texteditor.css" />
     <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-texteditor\texteditor.html" />
-    <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-texteditor\__MACOSX\images\._backcolor.png" />
-    <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-texteditor\__MACOSX\images\._forecolor.png" />
-    <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-texteditor\__MACOSX\images\._indent.png" />
-    <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-texteditor\__MACOSX\images\._outdent.png" />
     <Content Include="Scripts\easyui\themes\insdep\expand\treegrid-dnd\treegrid-dnd.html" />
     <Content Include="Scripts\easyui\themes\insdep\expand\treegrid-dnd\treegrid-dnd.js" />
     <Content Include="Scripts\easyui\themes\insdep\icon.css" />
@@ -3877,7 +3873,6 @@
     <Content Include="Views\Attachments\_PopupDetailFormView.cshtml" />
     <Content Include="Views\Attachments\Index.cshtml" />
     <Content Include="Scripts\plugin\plupload\bower.json" />
-    <Content Include="Scripts\plugin\plupload\js\Moxie.xap" />
     <Content Include="Scripts\plugin\plupload\readme.md" />
     <Content Include="Views\RoleManage\Index.cshtml" />
     <Content Include="Scripts\plugin\chartjs\LICENSE.md" />
@@ -3978,8 +3973,6 @@
     <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-portal\datagrid_data.json" />
     <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-rtl\datagrid_data1.json" />
     <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-rtl\tree_data1.json" />
-    <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-texteditor\images\.DS_Store" />
-    <Content Include="Scripts\easyui\themes\insdep\expand\jquery-easyui-texteditor\__MACOSX\images\._.DS_Store" />
     <Content Include="Scripts\easyui\themes\insdep\iconfont\iconfont.eot" />
     <Content Include="Scripts\easyui\themes\insdep\iconfont\iconfont.ttf" />
     <Content Include="Scripts\easyui\themes\insdep\iconfont\iconfont.woff" />
