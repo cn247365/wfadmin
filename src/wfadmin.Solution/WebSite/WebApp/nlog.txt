@@ -79,3 +79,6 @@ Invalid column name 'DownloadedDate'.
 2020-11-19 09:52:27.3538|FATAL|WebApp.MvcApplication|Child actions are not allowed to perform redirect actions.
 2020-11-19 10:02:02.4424|FATAL|WebApp.MvcApplication|值不能为 null。
 参数名: source
+2020-12-03 17:38:32.4100|FATAL|WebApp.MvcApplication|The provided anti-forgery token was meant for a different claims-based user than the current user.
+2020-12-03 17:38:40.5403|FATAL|WebApp.MvcApplication|The provided anti-forgery token was meant for a different claims-based user than the current user.
+2020-12-03 17:38:54.3462|FATAL|WebApp.MvcApplication|The required anti-forgery cookie "__RequestVerificationToken" is not present.

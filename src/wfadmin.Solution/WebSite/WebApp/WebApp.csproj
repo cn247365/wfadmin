@@ -454,6 +454,9 @@
     <Compile Include="Controllers\RoleManageController.cs" />
     <Compile Include="Controllers\RoleMenusController.cs" />
     <Compile Include="Controllers\WfTablesController.cs" />
+    <Compile Include="Controllers\YAVOCSFiCACostCenterController.cs" />
+    <Compile Include="Controllers\YAVOCSFiCostCenterController.cs" />
+    <Compile Include="Controllers\YAVTCNFiCostCenterController.cs" />
     <Compile Include="Controllers\YAFRSFiTrailApplyRoleController.cs" />
     <Compile Include="Controllers\YAFRSAPFiGiftRoleListController.cs" />
     <Compile Include="Controllers\YAFRSFunctionalManagerController.cs" />
@@ -504,6 +507,9 @@
     <Compile Include="Models\ViewModel\NavigationModel.cs" />
     <Compile Include="Models\ViewModel\SmartNavigation.cs" />
     <Compile Include="Models\ViewModel\SmartSettings.cs" />
+    <Compile Include="Models\WfModel\YAVTCNFiCostCenter.cs" />
+    <Compile Include="Models\WfModel\YAVOCSFiCACostCenter.cs" />
+    <Compile Include="Models\WfModel\YAVOCSFiCostCenter.cs" />
     <Compile Include="Models\WfModel\YAFRSFiTrailApplyRole.cs" />
     <Compile Include="Models\WfModel\YAFRSAPFiGiftRoleList.cs" />
     <Compile Include="Models\WfModel\YAFRSFunctionalManger.cs" />
@@ -618,6 +624,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\wfadmin.mdf" />
+    <Content Include="App_Data\wfadmin_log.ldf">
+      <DependentUpon>wfadmin.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\css\app.bundle-rtl.css" />
     <Content Include="Content\css\app.bundle.css" />
     <Content Include="Content\css\datagrid\datatables\datatables.bundle-rtl.css" />
@@ -3921,9 +3931,11 @@
     <Content Include="Views\YAVPCVendorApprover\_PopupDetailFormView.cshtml" />
     <Content Include="Views\YAVPCVendorApprover\Index.cshtml" />
     <Content Include="Views\YAGBSNPNVendor\Index.cshtml" />
+    <Content Include="Views\YAVOCSFiCostCenter\Index.cshtml" />
+    <Content Include="Views\YAVOCSFiCACostCenter\Index.cshtml" />
+    <Content Include="Views\YAVTCNFiCostCenter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="App_Helpers\Extensions.Logging\" />
     <Folder Include="Controllers\api\" />
     <Folder Include="Scripts\plugin\plupload\examples\handler-php\" />
