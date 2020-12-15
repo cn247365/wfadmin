@@ -454,6 +454,7 @@
     <Compile Include="Controllers\RoleManageController.cs" />
     <Compile Include="Controllers\RoleMenusController.cs" />
     <Compile Include="Controllers\WfTablesController.cs" />
+    <Compile Include="Controllers\YAVPCFiTANetWorkController.cs" />
     <Compile Include="Controllers\YAVOCSFiCACostCenterController.cs" />
     <Compile Include="Controllers\YAVOCSFiCostCenterController.cs" />
     <Compile Include="Controllers\YAVTCNFiCostCenterController.cs" />
@@ -507,6 +508,7 @@
     <Compile Include="Models\ViewModel\NavigationModel.cs" />
     <Compile Include="Models\ViewModel\SmartNavigation.cs" />
     <Compile Include="Models\ViewModel\SmartSettings.cs" />
+    <Compile Include="Models\WfModel\YAVPCFiTANetWork.cs" />
     <Compile Include="Models\WfModel\YAVTCNFiCostCenter.cs" />
     <Compile Include="Models\WfModel\YAVOCSFiCACostCenter.cs" />
     <Compile Include="Models\WfModel\YAVOCSFiCostCenter.cs" />
@@ -3929,6 +3931,7 @@
     <Content Include="Views\YAVOCSFiCostCenter\Index.cshtml" />
     <Content Include="Views\YAVOCSFiCACostCenter\Index.cshtml" />
     <Content Include="Views\YAVTCNFiCostCenter\Index.cshtml" />
+    <Content Include="Views\YAVPCFiTANetWork\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Helpers\Extensions.Logging\" />

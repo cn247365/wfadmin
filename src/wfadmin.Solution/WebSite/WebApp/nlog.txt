@@ -83,3 +83,8 @@ Invalid column name 'DownloadedDate'.
 2020-12-03 17:38:40.5403|FATAL|WebApp.MvcApplication|The provided anti-forgery token was meant for a different claims-based user than the current user.
 2020-12-03 17:38:54.3462|FATAL|WebApp.MvcApplication|The required anti-forgery cookie "__RequestVerificationToken" is not present.
 2020-12-07 10:51:40.3329|FATAL|WebApp.MvcApplication|The controller for path '/VOCSFiCostCenter/Index' was not found or does not implement IController.
+2020-12-14 11:30:31.5402|FATAL|WebApp.MvcApplication|无效操作。连接被关闭。
+2020-12-14 11:30:35.7963|FATAL|WebApp.MvcApplication|无效操作。连接被关闭。
+2020-12-15 09:57:21.1639|FATAL|WebApp.MvcApplication|The provided anti-forgery token was meant for a different claims-based user than the current user.
+2020-12-15 09:57:25.1772|FATAL|WebApp.MvcApplication|The provided anti-forgery token was meant for a different claims-based user than the current user.
+2020-12-15 09:57:34.1062|FATAL|WebApp.MvcApplication|The required anti-forgery cookie "__RequestVerificationToken" is not present.
