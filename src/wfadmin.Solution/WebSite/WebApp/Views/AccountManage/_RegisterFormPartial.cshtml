@@ -235,7 +235,7 @@
         var objectURL = URL.createObjectURL(blob);
         avatarimg.src = objectURL;
       });
-      console.log(imageData, canvasData)
+      //console.log(imageData, canvasData)
     });
   });
 
@@ -259,6 +259,7 @@
           PasswordConfirm: $('#registuser_form #newpasswordConfirm').val(),
           FullName: $('#registuser_form #fullname').val(),
           PhoneNumber: $('#registuser_form #phonenumber').val(),
+          Avatars: getavatarbase64()
         }
       }).done((res) => {
         if (res.success) {
@@ -286,7 +287,7 @@
 
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     var base64String = canvas.toDataURL();
-    console.log(base64String)
+    //console.log(base64String)
     return base64String;
   }
 </script>

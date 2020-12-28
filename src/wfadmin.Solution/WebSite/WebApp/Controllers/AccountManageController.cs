@@ -77,6 +77,7 @@ namespace WebApp.Controllers
       if (this.ModelState.IsValid)
       {
         var tenant =await this.dbContext.Tenants.FindAsync(model.TenantId);
+        this.saveToAvatar(model.Avatars, model.Username);
         var user = new ApplicationUser
         {
           UserName = model.Username,
@@ -88,11 +89,12 @@ namespace WebApp.Controllers
           Email = model.Email,
           PhoneNumber = model.PhoneNumber,
           AccountType = 0,
-          Avatars = "ng.jpg",
-          AvatarsX120 = "ng.jpg",
+          Avatars = $"{model.Username}.png",
+          AvatarsX120 = $"{model.Username}.png",
 
         };
         var result = await this.UserManager.CreateAsync(user, model.Password);
+       
         if (result.Succeeded)
         {
           this.logger.Info($"注册成功【{user.UserName}】");
@@ -123,6 +125,28 @@ namespace WebApp.Controllers
         var modelStateErrors = string.Join(",", ModelState.Keys.SelectMany(key => ModelState[key].Errors.Select(n => n.ErrorMessage)));
         return Json(new { success = false, err = modelStateErrors }, JsonRequestBehavior.AllowGet);
       }
+    }
+
+    private void saveToAvatar(string imgbase64string,string username)
+    {
+      var base64string = "";
+      var avatarPath = this.Server.MapPath($"/Content/img/avatars/{username}.png");
+      if (imgbase64string.Contains("data:image"))
+      {
+        base64string= imgbase64string.Substring(imgbase64string.LastIndexOf(',') + 1);
+      }
+      else
+      {
+        base64string = imgbase64string;
+      }
+      var imageBytes = Convert.FromBase64String(base64string);
+      using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+      {
+        ms.Write(imageBytes, 0, imageBytes.Length);
+        var image = System.Drawing.Image.FromStream(ms, true);
+        image.Save(avatarPath, System.Drawing.Imaging.ImageFormat.Png);
+      }
+      
     }
     public async Task<JsonResult> SetUnLockout(string[] userid)
     {
