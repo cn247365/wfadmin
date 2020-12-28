@@ -195,7 +195,7 @@
     function onSelect(row) {
       var data = $('#menu-tree').treegrid('getChildren', row.Id);
       $.each(data, function (index, row) {
-        $('#menu-tree').treegrid('select', row.Id);
+        //$('#menu-tree').treegrid('select', row.Id);
       })
       //var parent = $('#menu-tree').treegrid('getParent', row.Id);
       //var selections = $('#menu-tree').treegrid('getSelections');
@@ -214,9 +214,10 @@
           idField: 'Id',
           treeField: 'Title',
           pagination: false,
-          checkOnSelect: true,
-          onSelect: onSelect,
-          onUnselect: onUnselect,
+          checkOnSelect: false,
+          selectOnCheck:false,
+          //onSelect: onSelect,
+          //onUnselect: onUnselect,
           onBeforeLoad: function () {
             $('.enable-loader').removeClass('enable-loader')
           },
@@ -340,7 +341,7 @@
           title: '请耐心等待',
           msg: '正在保存数据...'
         });
-        var selectednodes = $('#menu-tree').treegrid('getSelections');
+        var selectednodes = $('#menu-tree').treegrid('getChecked');
         var list = [];
         $.each(selectednodes, function (i, data) {
           if (selectedrole.length > 0) {
