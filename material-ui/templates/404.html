@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Material UI - Premium Bootstrap UI Kit">
+    <meta name="author" content="kingstudio.ro">
+    <!-- Favicon -->
+    <link rel="icon" href=".\..\assets\images\favicon.png">
+    <!-- Site Title -->
+    <title>Material UI - Premium Bootstrap UI Kit</title>
+    <!-- Bootstrap 4 core CSS -->
+    <link href=".\..\assets\css\bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link href=".\..\assets\css\jquery-pseudo-ripple.css" rel="stylesheet">
+    <link href=".\..\assets\css\style.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700" rel="stylesheet">
+    <link href=".\..\assets\css\fontawesome-all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="full-height v-center relative bg-img" style="background-image: url(../assets/images/material-bg-light.jpg)">
+        <div class="overlay-light"></div>
+        <div class="container text-center relative z-index-1">
+            <h2 class="pnf mb-30 d-block">Page Not Found</h2>
+            <h6 class="fs-16 mb-50 w-40 m-x-auto">Sorry, the page you are looking for was moved, removed, renamed or might never existed.</h6>
+            <button class="btn btn-primary mr-15" type="button" onclick="window.history.back();"><i class="material-icons fs-16 va-middle mr-5">chevron_left</i> <span>Go Back</span></button>
+            <a href=".\..\index-site\kingstudio.ro\.index.html" class="btn btn-primary"><i class="material-icons fs-16 va-middle mr-5">home</i> <span> Homepage</span></a>
+        </div><!-- / container -->
+    </div>
+
+<!-- core JavaScript -->
+<script src=".\..\assets\js\jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src=".\..\assets\js\bootstrap.min.js"></script>
+<!-- / core JavaScript -->
+
+<!-- preloader -->
+<script src=".\..\assets\js\preloader.js"></script>
+<!-- / preloader -->
+
+<!-- ripple-effect -->
+<script src=".\..\assets\js\jquery-pseudo-ripple.js"></script>
+<script>
+$('.btn').ripple({
+  duration: 1000,
+});
+
+$('.page-item.active .page-link').ripple({
+  duration: 1000,
+});
+</script>
+<!-- / ripple-effect -->
+
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Material UI - Premium Bootstrap UI Kit">
+    <meta name="author" content="kingstudio.ro">
+    <!-- Favicon -->
+    <link rel="icon" href=".\..\assets\images\favicon.png">
+    <!-- Site Title -->
+    <title>Material UI - Premium Bootstrap UI Kit</title>
+    <!-- Bootstrap 4 core CSS -->
+    <link href=".\..\assets\css\bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link href=".\..\assets\css\animate.css" rel="stylesheet">
+    <link href=".\..\assets\css\jquery-pseudo-ripple.css" rel="stylesheet">
+    <link href=".\..\assets\css\style.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700" rel="stylesheet">
+    <link href=".\..\assets\css\fontawesome-all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div id="top">
+    </div><!-- / top -->
+
+    <a href=".\..\index-site\kingstudio.ro\.index.html" class="top-logo"><img src=".\..\assets\images\logo.png" alt=""></a>
+
+    <div class="full-height relative p-y-30 v-center bg-img" style="background-image: url(../assets/images/material-bg-light.jpg)">
+        <div class="overlay-light"></div>
+        <div class="container p-y-70">
+            <div class="w-40 m-x-auto">
+                <div class="card card-w-bar mb-15">
+                    <div class="card-body p-x-25">
+                        <ul class="nav nav-tabs text-center tab-w-bar bg-primary p-x-50" role="tablist">
+                            <li class="nav-item m-x-auto">
+                                <a class="nav-link active" data-toggle="tab" href=".\login-register.html#tab-sign-in" role="tab"><i class="material-icons fs-18 mr-5 va-middle">lock</i> <span class="va-middle">Sign In</span></a>
+                            </li>
+                            <li class="nav-item m-x-auto">
+                                <a class="nav-link" data-toggle="tab" href=".\login-register.html#tab-register" role="tab"><i class="material-icons fs-18 mr-5 va-middle">person</i> <span class="va-middle">Register</span></a>
+                            </li>
+                        </ul><!-- / nav tabs -->
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active mt-20 p-15" id="tab-sign-in" role="tabpanel">
+                                <form class="validation-inner" id="login-form3">
+                                    <div class="form-group">
+                                        <div class="md-input">
+                                            <input type="text" class="md-form-control" name="usernameLogin3" required>
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label><i class="material-icons fs-18 va-middle mr-5">person</i> <span class="va-middle">Username</span></label>
+                                        </div><!-- / md-input -->
+                                    </div><!-- / form-group -->
+
+                                    <div class="form-group">
+                                        <div class="md-input">
+                                            <input type="password" class="md-form-control" name="passwordLogin3" required>
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label><i class="material-icons fs-18 va-middle mr-5">lock</i> <span class="va-middle">Password</span></label>
+                                        </div><!-- / md-input -->
+                                    </div><!-- / form-group -->
+
+                                    <div class="row v-center mt-35">
+                                        <div class="col-xl-7 tablet-xl-top">
+                                            <div class="checkbox checkbox-primary ml-10">
+                                                <label class="hidden"><input type="checkbox"></label>
+                                                <input id="checkbox-login2" type="checkbox">
+                                                <label for="checkbox-login2"><span class="fw-light">Remember Me</span></label>
+                                            </div><!-- / checkbox -->
+                                        </div><!-- / column -->
+                                        <div class="col-xl-5 text-right">
+                                            <button type="submit" class="btn btn-primary tablet-xl-fw"><i class="material-icons fs-18 mr-5">input</i> <span>Sign In</span></button>
+                                        </div><!-- / column -->
+                                    </div><!-- / row -->
+                                </form><!-- / login-form -->
+                                <div class="pt-60 text-center">
+                                    <p style="margin-bottom:8px;">Sign in with:</p>
+                                    <a href=".\login-register.html#x" class="btn btn-sm btn-facebook mt-5"><span class="fab fa-facebook-f mr-5"></span> <span>Facebook</span></a>
+                                    <a href=".\login-register.html#x" class="btn btn-sm btn-twitter mt-5"><span class="fab fa-twitter mr-5"></span> <span>Twitter</span></a>
+                                    <a href=".\login-register.html#x" class="btn btn-sm btn-warning mt-5"><span class="fab fa-google mr-5"></span> <span>Google</span></a>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade mt-20 p-15" id="tab-register" role="tabpanel">
+                                <form class="validation-inner" id="register-form3" novalidate="novalidate">
+                                    <div class="form-group">
+                                        <div class="md-input">
+                                            <input type="email" class="md-form-control" name="emailRegister3" required="">
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label><i class="material-icons fs-18 va-middle mr-5">email</i> <span class="va-middle">Email</span></label>
+                                        </div><!-- / md-input -->
+                                    </div><!-- / form-group -->
+                                    <div class="form-group">
+                                        <div class="md-input">
+                                            <input type="text" class="md-form-control" name="usernameRegister3" required="">
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label><i class="material-icons fs-18 va-middle mr-5">person</i> <span class="va-middle">Username</span></label>
+                                        </div><!-- / md-input -->
+                                    </div><!-- / form-group -->
+                                    <div class="form-group">
+                                        <div class="md-input">
+                                            <input type="password" id="passwordRegister3" class="md-form-control" name="passwordRegister3" required="">
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label><i class="material-icons fs-18 va-middle mr-5">lock</i> <span class="va-middle">Password</span></label>
+                                        </div><!-- / md-input -->
+                                    </div><!-- / form-group -->
+                                    <div class="form-group">
+                                        <div class="md-input">
+                                            <input type="password" class="md-form-control" name="passwordRegisterConfirm3" required="">
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label><i class="material-icons fs-18 va-middle mr-5">lock</i> <span class="va-middle">Confirm Password</span></label>
+                                        </div><!-- / md-input -->
+                                    </div><!-- / form-group -->
+                                    <div class="checkbox checkbox-primary">
+                                        <label class="hidden"><input type="checkbox"></label>
+                                        <input id="checkbox-register2" type="checkbox" class="ml-10">
+                                        <label for="checkbox-register2"><span> Accept <a href=".\login-register.html#x" class="text-primary">Terms &amp; Conditions</a></span></label>
+                                        <button type="submit" class="btn btn-primary btn-block w-100 mt-20"><i class="material-icons fs-18 mr-5">input</i> <span>Register</span></button>
+                                    </div><!-- checkbox -->
+                                </form><!-- / register-form -->
+                            </div>
+                        </div><!-- / tab-content -->
+                    </div><!-- / card-body -->
+                </div><!-- / card -->
+            </div>
+        </div><!-- / container -->
+        <p class="absolute bottom-15 x-0 text-center">
+            <a href=".\..\index-site\kingstudio.ro\.index.html" class="text-link fs-16 m-x-15">Home</a>
+            <a href=".\..\components.html" class="text-link fs-16 m-x-15">Components</a>
+            <a href=".\..\sections.html" class="text-link fs-16 m-x-15">Sections</a>
+            <a href=".\..\index.html#templates" class="text-link fs-16 m-x-15">Templates</a>
+        </p>      
+    </div>
+
+<!-- core JavaScript -->
+<script src=".\..\assets\js\jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src=".\..\assets\js\bootstrap.min.js"></script>
+<!-- / core JavaScript -->
+
+<!-- preloader -->
+<script src=".\..\assets\js\preloader.js"></script>
+<!-- / preloader -->
+
+<!-- ripple-effect -->
+<script src=".\..\assets\js\jquery-pseudo-ripple.js"></script>
+<script>
+$('.btn').ripple({
+  duration: 1000,
+});
+
+$('.menu-custom .nav-link').ripple({
+  duration: 1000,
+});
+
+$('.menu-pills .nav-link').ripple({
+  duration: 1000,
+});
+
+$('.nav-tabs .nav-link').ripple({
+  duration: 1000,
+});
+
+$('.page-item.active .page-link').ripple({
+  duration: 1000,
+});
+</script>
+<!-- / ripple-effect -->
+
+<!-- form validation -->
+<script src=".\..\assets\js\jquery.validate.min.js"></script>
+<script src=".\..\assets\js\form-validation.js"></script>
+<!-- end of form validation -->
+
+</body>
+
+</html>
